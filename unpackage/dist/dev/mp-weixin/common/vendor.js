@@ -7611,9 +7611,9 @@ module.exports = g;
 
 /***/ }),
 /* 4 */
-/*!*********************************************!*\
-  !*** C:/Users/mi/Desktop/hui-zi/pages.json ***!
-  \*********************************************/
+/*!************************************************!*\
+  !*** C:/Users/mi/Desktop/git-huizi/pages.json ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8518,20 +8518,20 @@ module.exports = {"_from":"@dcloudio/uni-stat@alpha","_id":"@dcloudio/uni-stat@2
 
 /***/ }),
 /* 7 */
-/*!**************************************************************!*\
-  !*** C:/Users/mi/Desktop/hui-zi/pages.json?{"type":"style"} ***!
-  \**************************************************************/
+/*!*****************************************************************!*\
+  !*** C:/Users/mi/Desktop/git-huizi/pages.json?{"type":"style"} ***!
+  \*****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "uni-app" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationStyle": "custom", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/home/index": { "navigationStyle": "custom", "usingComponents": {}, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 /* 8 */
-/*!*************************************************************!*\
-  !*** C:/Users/mi/Desktop/hui-zi/pages.json?{"type":"stat"} ***!
-  \*************************************************************/
+/*!****************************************************************!*\
+  !*** C:/Users/mi/Desktop/git-huizi/pages.json?{"type":"stat"} ***!
+  \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
