@@ -1,0 +1,174 @@
+.hui-zis-top {
+  height: 400rpx;
+}
+.hui-zis-top image {
+  width: 100%;
+  height: 100%;
+}
+.hui-zis-tab {
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+  top: -40rpx;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 15px #d2cfcf;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.hui-zis-items {
+  width: 90%;
+  margin: 0 auto;
+}
+.hui-zis-items-title {
+  position: relative;
+}
+.hui-zis-items-title .jingxuan {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #7b00d8;
+  text-shadow: 5rpx 5rpx 8rpx #0e5dd4;
+  text-align: left;
+  position: relative;
+  z-index: 99;
+  margin-left: 30rpx;
+}
+.hui-zis-items-title .all {
+  float: right;
+  margin-right: 20rpx;
+}
+.hui-zis-items-title .all text {
+  position: relative;
+  top: -4rpx;
+}
+.hui-zis-items-title .all image {
+  width: 30rpx;
+  height: 30rpx;
+}
+.hui-zis-items-title > image {
+  position: absolute;
+  top: -80%;
+  left: 0;
+  width: 250rpx;
+  height: 120rpx;
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+  /* 针对 IE8 以及更早的版本 */
+}
+.hui-zis-items-item .custom-area {
+  width: 95%;
+  margin: 0 auto;
+  color: #505050;
+  font-size: 14px;
+  line-height: 150%;
+  text-align: center;
+}
+.hui-zis-items-item .custom-area-item {
+  margin-top: 20rpx;
+  width: 100%;
+  box-shadow: 10rpx 10rpx 20rpx #C0C0C0;
+}
+.hui-zis-items-item .custom-area .tc,
+.hui-zis-items-item .custom-area .td,
+.hui-zis-items-item .custom-area .tf {
+  width: 100%;
+  height: 60rpx;
+  color: #a6a6a6;
+  font-size: 26rpx;
+  line-height: 60rpx;
+  border: 2rpx solid #f2f2f2;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+.hui-zis-items-item .custom-area .tc-r,
+.hui-zis-items-item .custom-area .td-r,
+.hui-zis-items-item .custom-area .tf-r {
+  -webkit-box-flex: 2;
+  -webkit-flex: 2;
+          flex: 2;
+  text-align: left;
+}
+.hui-zis-items-item .custom-area .tc-l,
+.hui-zis-items-item .custom-area .td-l,
+.hui-zis-items-item .custom-area .tf-l {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  text-align: right;
+}
+.hui-zis-items-item .custom-area .td {
+  height: 230rpx;
+}
+.hui-zis-items-item .custom-area .td-r {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  text-align: left;
+  color: #333333;
+  position: relative;
+}
+.hui-zis-items-item .custom-area .td-r .shouyi {
+  margin-top: 30rpx;
+  font-size: 70rpx;
+  line-height: 100rpx;
+  color: #ff0900;
+}
+.hui-zis-items-item .custom-area .td-r::after {
+  content: '';
+  display: block;
+  height: 200rpx;
+  width: 2rpx;
+  background-color: #f1e4e4;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+}
+.hui-zis-items-item .custom-area .td-l {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  text-align: left;
+  margin-left: 50rpx;
+  font-size: 24rpx;
+}
+.hui-zis-items-item .custom-area .td-l .td-l-tile {
+  font-weight: 600;
+  margin-top: 30rpx;
+  font-size: 40rpx;
+  color: #333333;
+}
+.hui-zis-items-item .custom-area .tf {
+  height: 80rpx;
+}
+.hui-zis-items-item .custom-area .tf-r {
+  -webkit-box-flex: 2;
+  -webkit-flex: 2;
+          flex: 2;
+  text-align: left;
+}
+.hui-zis-items-item .custom-area .tf-l {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  text-align: right;
+}
+.hui-zis-items-item .custom-area .tf-l .tf-button {
+  margin-top: 12rpx;
+  width: 200rpx;
+  height: 56rpx;
+  color: #fff;
+  box-shadow: #90c0ef solid 1px;
+  background: -webkit-linear-gradient(bottom left, #ff6ba2, #7b00d8);
+  background: linear-gradient(to top right, #ff6ba2, #7b00d8);
+  border-radius: 4px;
+  font-size: 26rpx;
+  line-height: 56rpx;
+  text-align: center;
+}
+

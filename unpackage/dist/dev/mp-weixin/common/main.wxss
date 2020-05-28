@@ -33,4 +33,6 @@ page, ._div, ._p, ._h1, ._h2, ._h3, ._h4, ._h5, ._h6, ._ul, ._ol, ._li, ._dl, ._
 ._a{outline:none;}
 ._ul, ._ol ._li { list-style:none;
 }
+.fr{float: right;}
+.fl{float: left;}
 

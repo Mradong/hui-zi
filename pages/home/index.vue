@@ -11,6 +11,12 @@
 					<!-- <image src="../../static/images/jinzhu.png" mode=""></image> -->
 				</view>
 			</view>
+			<view class="icon-lyd-l">
+				<image src="../../static/images/wenhao.svg" mode=""></image>
+			</view>
+			<view class="icon-lyd-r">
+				<image src="../../static/images/shezhi.svg" mode=""></image>
+			</view>
 			<image src="../../static/images/fense_bg_02.png" mode=""></image>
 		</view>
 		<view class="dream-detail">
@@ -36,16 +42,33 @@
 		</view>
 		<view class="dream-tab">
 			<view class="dream-tab-y">
-				<button class="button-y">定时存入</button>
+				<button class="button-y">我的会子</button>
 			</view>
 			<view class="dream-tab-e">
-				<button class="button-e">为了梦想取一名1</button>
+				<button class="button-e" @click="goHuiZis">冲啊，路飞</button>
 			</view>
 		</view>
 	</view>
 </template>
 
 <script>
+	export default {
+		data() {
+			return {
+				title: 'Hello'
+			}
+		},
+		onLoad() {
+	
+		},
+		methods: {
+			goHuiZis(){
+				uni.navigateTo({
+					url: '/pages/huiHzs/index'
+				});
+			},
+		}
+	}
 </script>
 
 <style lang="less">
@@ -86,6 +109,26 @@
 				height: 100%;
 				position: absolute;
 				top: 0;
+			}
+			.icon-lyd-r ,.icon-lyd-l{
+				width: 50upx;
+				height: 50upx;
+				position: absolute;
+				top: 20upx;
+				z-index: 99;
+				opacity:0.5;
+				filter:alpha(opacity=50); /* 针对 IE8 以及更早的版本 */
+				image{
+					width: 100%;
+					height: 100%;
+
+				}
+			}
+			.icon-lyd-r{
+				right: 20upx;
+			}
+			.icon-lyd-l{
+				left: 20upx;
 			}
 		}
 		&-detail{

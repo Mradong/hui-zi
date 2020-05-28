@@ -70,9 +70,9 @@
 	// 主页页面的页面路径
 	// 关联功能：打开的页面只有一个的时候右上角自动显示返回首页按钮，下面这个数组是排除显示返回首页的页面。
 	// 主页使用场景：小程序分享出去的页面，用户点击开是分享页面，很多情况下是没有返回首页按钮的
-	const mainPagePath = ['pages/navList', 'pages/demo6'];
+	const mainPagePath = ['pages/home/index', 'pages/demo6'];
 	//返回首页的地址
-	const homePath = '/pages/navList';
+	const homePath = '/pages/home/index';
 	//白色表达值
 	const whiteList = ['#FFF', '#FFFFFF', 'white', 'rgb(255,255,255)', 'rgba(255,255,255,1)'];
 	export default {
