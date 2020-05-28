@@ -39,13 +39,30 @@
 				<button class="button-y">定时存入</button>
 			</view>
 			<view class="dream-tab-e">
-				<button class="button-e">为了梦想取一名1</button>
+				<button class="button-e" @click="goHuiZis">为了梦想取一名1</button>
 			</view>
 		</view>
 	</view>
 </template>
 
 <script>
+	export default {
+		data() {
+			return {
+				title: 'Hello'
+			}
+		},
+		onLoad() {
+	
+		},
+		methods: {
+			goHuiZis(){
+				uni.navigateTo({
+					url: '/pages/huiHzs/index'
+				});
+			},
+		}
+	}
 </script>
 
 <style lang="less">
