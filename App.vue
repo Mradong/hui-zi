@@ -29,4 +29,6 @@
 	a{text-decoration:none; blr:expression(this.onFocus=this.blur());}
 	a{outline:none;}
 	ul, ol li { list-style:none; }
+	.fr{float: right;}
+	.fl{float: left;}
 </style>

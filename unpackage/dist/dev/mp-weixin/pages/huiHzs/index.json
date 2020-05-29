@@ -1,0 +1,6 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "wuc-tab": "/components/wuc-tab/wuc-tab"
+  }
+}
