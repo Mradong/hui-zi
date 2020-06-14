@@ -1,1 +1,0 @@
-<view class="home"><image class="home-logo" src="/static/images/home_logo.png"></image><view class="home-button"><button data-event-opts="{{[['tap',[['goHome']]]]}}" bindtap="__e">创建梦想</button></view></view>

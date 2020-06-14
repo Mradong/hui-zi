@@ -1,0 +1,85 @@
+.item-detail {
+  width: 95%;
+  margin: 0 auto ;
+}
+.item-detail .item-chunk {
+  height: 250rpx;
+  margin: 20rpx 0 40rpx;
+  background-image: -webkit-linear-gradient(top left, #f5bdcb, #fceee2);
+  background-image: linear-gradient(to bottom right, #f5bdcb, #fceee2);
+  border-radius: 6rpx;
+  box-shadow: 0 2px 2px #d1d1d1;
+}
+.item-detail .items .item {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  border-bottom: 1px solid #f1eaea;
+  position: relative;
+}
+.item-detail .items .item .item-content {
+  -webkit-box-flex: 2;
+  -webkit-flex: 2;
+          flex: 2;
+  text-align: center;
+  height: 150rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+}
+.item-detail .items .item .item-content-ball {
+  width: 80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 50%;
+  background-image: -webkit-linear-gradient(top left, #f5bdcb, #fceee2);
+  background-image: linear-gradient(to bottom right, #f5bdcb, #fceee2);
+  position: relative;
+  top: 50%;
+  left: 50%;
+  margin-top: -40rpx;
+  margin-left: -40rpx;
+  font-size: 40rpx;
+  color: #f18d00;
+}
+.item-detail .items .item .item-content-main,
+.item-detail .items .item .item-content-minor {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+}
+.item-detail .items .item .item-content-main {
+  font-size: 36rpx;
+  line-height: 80rpx;
+}
+.item-detail .items .item .item-content-main text {
+  font-size: 46rpx;
+  color: #f31d1d;
+  margin: 0 10rpx;
+}
+.item-detail .items .item .item-content-minor {
+  font-size: 24rpx;
+  line-height: 40rpx;
+  color: #C8C7CC;
+}
+.item-detail .items .item .red-sign,
+.item-detail .items .item .green-sign {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+}
+.item-detail .items .item .red-sign {
+  border-top: 30rpx solid #f30a0a;
+  border-right: 30rpx solid transparent;
+}
+.item-detail .items .item .green-sign {
+  border-top: 30rpx solid #4CD964;
+  border-right: 30rpx solid transparent;
+}
+

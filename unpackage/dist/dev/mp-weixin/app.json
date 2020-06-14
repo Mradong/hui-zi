@@ -1,8 +1,13 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/home/index",
-    "pages/huiHzs/index"
+    "pages/huiHzs/index",
+    "pages/myItem/index",
+    "pages/itemDetail/index",
+    "pages/competition/index",
+    "pages/ranking/index",
+    "pages/share/index",
+    "pages/login/index"
   ],
   "subPackages": [],
   "window": {

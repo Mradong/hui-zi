@@ -4,7 +4,7 @@
 			<nav-bar ref="navBar" backState="1000" :home="false"  transparentFixedFontColor="#FFF" type="transparentFixed" title="会子列表">
 			<!-- <view class="icon_setUp" slot="transparentFixedRight">设置</view> -->
 			</nav-bar>
-			<image src="../../static/images/2020_05_2.png" mode=""></image>
+			<image src="../../static/images/cyf.jpg" mode=""></image>
 		</view>
 		<wuc-tab class="hui-zis-tab" :tab-list="tabList" :tabCur.sync="TabCur" @change="tabChange" :textFlex="true" ></wuc-tab>
 		<view class="hui-zis-items" v-if="isHuiItem">
@@ -33,7 +33,7 @@
 						</view>
 						<view class="tf">
 							<view class="tf-r">项目名：</view>
-							<view class="tf-l"><button type="default" class="tf-button">入一名</button></view>
+							<view class="tf-l"><button type="default" class="tf-button" @click="toShare">入一名</button></view>
 						</view>
 					</view>
 					<view class="custom-area-item">
@@ -84,6 +84,11 @@
 					return ;
 				}
 				this.isHuiItem = false;
+			},
+			toShare(){
+				uni.navigateTo({
+					url: '/pages/share/index'
+				});
 			}
 		}
 	}

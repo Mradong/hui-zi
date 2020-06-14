@@ -1,3 +1,10 @@
+
+ .header_fixed {
+  z-index: 99999;
+}
+ .uni-countdown {
+  float: left;
+}
 .dream-banner {
   width: 100%;
   height: 400rpx;
@@ -6,8 +13,8 @@
 .dream-banner-title {
   position: absolute;
   top: 50rpx;
-  z-index: 999;
-  color: #FFFFFF;
+  z-index: 9;
+  color: #ffffff;
   width: 100%;
   text-align: center;
   font-size: 40rpx;
@@ -65,7 +72,7 @@
   margin: 0 auto;
   position: relative;
   top: -40rpx;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   box-shadow: 0 0 15px #d2cfcf;
   border-radius: 10px;
   display: -webkit-box;
@@ -84,11 +91,12 @@
 }
 .dream-detail-item text {
   font-weight: 500;
-  color: #9A9A9A;
+  color: #9a9a9a;
   font-size: 24rpx;
 }
 .dream-items {
   margin: 20rpx;
+  margin-bottom: 140rpx;
 }
 .dream-items-title text {
   position: relative;
@@ -99,8 +107,142 @@
   width: 50rpx;
   height: 50rpx;
 }
-.dream-tab {
+.dream-items .in-competition .today-item .custom-area {
+  width: 95%;
+  margin: 0 auto;
+  color: #505050;
+  font-size: 14px;
+  line-height: 150%;
+  text-align: center;
+}
+.dream-items .in-competition .today-item .custom-area-item {
+  margin-top: 20rpx;
+  width: 100%;
+  box-shadow: 10rpx 10rpx 20rpx #c0c0c0;
+}
+.dream-items .in-competition .today-item .custom-area .tc,
+.dream-items .in-competition .today-item .custom-area .td,
+.dream-items .in-competition .today-item .custom-area .tf {
+  width: 100%;
+  height: 80rpx;
+  color: #a6a6a6;
+  font-size: 26rpx;
+  line-height: 60rpx;
+  border: 2rpx solid #f2f2f2;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+.dream-items .in-competition .today-item .custom-area .tc-r,
+.dream-items .in-competition .today-item .custom-area .td-r,
+.dream-items .in-competition .today-item .custom-area .tf-r {
+  padding-top: 10rpx;
+  -webkit-box-flex: 2;
+  -webkit-flex: 2;
+          flex: 2;
+  text-align: left;
+}
+.dream-items .in-competition .today-item .custom-area .tc-r .countdown-text,
+.dream-items .in-competition .today-item .custom-area .td-r .countdown-text,
+.dream-items .in-competition .today-item .custom-area .tf-r .countdown-text {
+  float: left;
+}
+.dream-items .in-competition .today-item .custom-area .tc-r .countdown-text text,
+.dream-items .in-competition .today-item .custom-area .td-r .countdown-text text,
+.dream-items .in-competition .today-item .custom-area .tf-r .countdown-text text {
+  padding: 8rpx;
+  color: #DD524D;
+  font-size: 28rpx;
+}
+.dream-items .in-competition .today-item .custom-area .tc-l,
+.dream-items .in-competition .today-item .custom-area .td-l,
+.dream-items .in-competition .today-item .custom-area .tf-l {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  text-align: right;
+}
+.dream-items .in-competition .today-item .custom-area .td {
+  height: 210rpx;
+}
+.dream-items .in-competition .today-item .custom-area .td-r {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  text-align: left;
+  color: #333333;
+  position: relative;
+}
+.dream-items .in-competition .today-item .custom-area .td-r .unclosed-competition {
+  margin-top: 30rpx;
+  font-size: 24rpx;
+  color: #ff1800;
+  line-height: 36rpx;
+}
+.dream-items .in-competition .today-item .custom-area .td-r .shouyi {
+  margin-top: 30rpx;
+  font-size: 70rpx;
+  line-height: 76rpx;
+  color: #ff0900;
+}
+.dream-items .in-competition .today-item .custom-area .td-r::after {
+  content: '';
+  display: block;
+  height: 184rpx;
+  width: 2rpx;
+  background-color: #f1e4e4;
   position: absolute;
+  top: 50%;
+  right: 0;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+}
+.dream-items .in-competition .today-item .custom-area .td-l {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  text-align: left;
+  margin-left: 50rpx;
+  font-size: 24rpx;
+}
+.dream-items .in-competition .today-item .custom-area .td-l .td-l-tile {
+  font-weight: 600;
+  margin-top: 30rpx;
+  font-size: 40rpx;
+  color: #333333;
+}
+.dream-items .in-competition .today-item .custom-area .tf {
+  height: 80rpx;
+}
+.dream-items .in-competition .today-item .custom-area .tf-r {
+  -webkit-box-flex: 2;
+  -webkit-flex: 2;
+          flex: 2;
+  text-align: left;
+}
+.dream-items .in-competition .today-item .custom-area .tf-l {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  text-align: right;
+}
+.dream-items .in-competition .today-item .custom-area .tf-l .tf-button {
+  margin-top: 12rpx;
+  width: 200rpx;
+  height: 56rpx;
+  color: #fff;
+  box-shadow: #90c0ef solid 1px;
+  background: -webkit-linear-gradient(bottom left, #f38489, #ff525a);
+  background: linear-gradient(to top right, #f38489, #ff525a);
+  border-radius: 4px;
+  font-size: 26rpx;
+  line-height: 56rpx;
+  text-align: center;
+}
+.dream-tab {
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -115,7 +257,7 @@
           flex: 1;
 }
 .dream-tab-y .button-y {
-  color: #FF525A;
+  color: #ff525a;
 }
 .dream-tab-e {
   -webkit-box-flex: 2;
@@ -123,8 +265,8 @@
           flex: 2;
 }
 .dream-tab-e .button-e {
-  background-color: #FF525A;
-  color: #FFFFFF;
+  background-color: #ff525a;
+  color: #ffffff;
 }
 .dream-tab button,
 .dream-tab button::after {
