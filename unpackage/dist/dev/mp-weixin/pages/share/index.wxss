@@ -7,7 +7,6 @@ uni-page-body {
 .share {
   width: 100%;
   height: 100%;
-  background-color: #FADC00;
 }
 .share-nav {
   height: 80rpx;
@@ -43,6 +42,7 @@ uni-page-body {
   background-color: #FFFFFF;
 }
 .share-box-detail-card {
+  border: 1px solid #F0AD4E;
   border-radius: 5px;
   margin: 20rpx auto;
   width: 80%;
@@ -50,57 +50,29 @@ uni-page-body {
   padding: 20rpx;
 }
 .share-box-detail-card > view {
+  border-right: 1px solid #F0AD4E;
+  border-left: 1px solid #F0AD4E;
   line-height: 68rpx;
   color: #333;
-  font-size: 16px;
+  font-size: 36rpx;
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
 }
+.share-box-detail-card > view text.name {
+  display: inline-block;
+  font-weight: bold;
+  width: 250rpx;
+}
 .share-box-detail-card > view text {
+  font-weight: 500;
   padding-left: 20rpx;
 }
-.share-box-detail-msg {
-  width: 90%;
-  margin: 0 auto;
+.share-box-detail-card:first-child {
+  border-top: 1px solid #F0AD4E;
 }
-.share-box-detail-msg .text-style {
-  height: 84rpx;
-  padding-left: 40rpx;
-  padding-right: 40rpx;
-  color: #666666;
-  font-size: 14px;
-  border: 1px solid #dddddd;
-  background: #f4f4f4;
-  box-sizing: border-box;
-  border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  margin: 30rpx auto;
-}
-.share-box-detail .verify {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  width: 100%;
-}
-.share-box-detail .verify .ipt-default-current {
-  -webkit-box-flex: 3;
-  -webkit-flex: 3;
-          flex: 3;
-}
-.share-box-detail .verify .sms-cd-btn {
-  -webkit-box-flex: 2;
-  -webkit-flex: 2;
-          flex: 2;
-  height: 84rpx;
-  line-height: 84rpx;
-  padding: 0 24rpx;
-  margin: 30rpx 10rpx;
-  color: #444444;
-  background: #ffe300;
-  border-radius: 4px;
-  text-align: center;
-  font-size: 14px;
+.share-box-detail .share-button {
+  position: relative;
+  top: 120%;
 }
 

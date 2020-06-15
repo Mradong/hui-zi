@@ -95,7 +95,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
-var components
+var components = {
+  "uni-popup": () =>
+    Promise.all(/*! import() | components/uni-popup/uni-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-popup/uni-popup")]).then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 103))
+}
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -133,7 +136,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var moveVerify = function moveVerify() {return __webpack_require__.e(/*! import() | components/helang-moveVerify/helang-moveVerify */ "components/helang-moveVerify/helang-moveVerify").then(__webpack_require__.bind(null, /*! @/components/helang-moveVerify/helang-moveVerify.vue */ 133));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -180,20 +183,29 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-
-
-
-
+var _auth = __webpack_require__(/*! @/utils/auth */ 24);var uniPopup = function uniPopup() {return Promise.all(/*! import() | components/uni-popup/uni-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-popup/uni-popup")]).then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 103));};var uniPopupDialog = function uniPopupDialog() {return __webpack_require__.e(/*! import() | components/uni-popup/uni-popup-dialog */ "components/uni-popup/uni-popup-dialog").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup-dialog.vue */ 112));};var _default =
 {
   data: function data() {
     return {
-      username: "",
-      phone: "",
+      buttonText: "冲吧,路飞~",
+      isShow: true,
       resultData: {},
       isVerify: false };
 
   },
-  components: { "move-verify": moveVerify },
+  onLoad: function onLoad() {
+    if ((0, _auth.getToken)()) {
+      //=> 获取用户信息,判断该项目是否已经参加
+    } else
+    {
+      this.buttonText = "登录qu~";
+    }
+
+  },
+  components: {
+    uniPopup: uniPopup,
+    uniPopupDialog: uniPopupDialog },
+
   methods: {
     /* 校验结果回调函数 */
     verifyResult: function verifyResult(res) {
@@ -207,7 +219,29 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
       /* 删除当前页面的数据 */
       this.resultData = {};
+    },
+    close: function close(done) {
+      done();
+    },
+    confirm: function confirm(done) {
+      uni.navigateTo({
+        url: '/pages/login/index?from=share' });
+
+      done();
+    },
+    toLogin: function toLogin() {
+      this.$refs.popup.open();
+    },
+    join: function join() {
+      console.log("我加入会子了");
+    } },
+
+  watch: {
+    buttonText: function buttonText() {
+      this.isShow = false,
+      this.$refs.popup.open();
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

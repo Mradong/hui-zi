@@ -47,6 +47,12 @@
 			"style": {
 				"navigationStyle":"custom"
 			}
+		},
+		{
+			"path": "pages/perfectDatum/index",
+			"style": {
+				"navigationStyle":"custom"
+			}
 		}
 	],
 	"globalStyle": {

@@ -31,4 +31,22 @@
 	ul, ol li { list-style:none; }
 	.fr{float: right;}
 	.fl{float: left;}
+	/* 字体主色调 */
+	.dominant-hue{
+		color: #FADC00;
+	}
+	/* 背景主色调 */
+	.dominant-hue-bg{
+		background-color: #FADC00 !important;
+	}
+	/* 背景渐变主色调 */
+	.dominant-hue-bg-shade{
+		background: linear-gradient(to top right, #FADC00, #c9f5f7);
+	}
+	/* 按钮渐变主色调 */
+	.dominant-hue-button-bg-shade{
+		background: linear-gradient(to top right, #f38489, #ff525a);
+	}
+	/* 按钮按住状态主色调 */
+	.button-hover{ opacity: 0.7;color: #FFFFFF !important;}
 </style>

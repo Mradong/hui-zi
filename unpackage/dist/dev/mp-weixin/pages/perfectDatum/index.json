@@ -1,0 +1,6 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "move-verify": "/components/helang-moveVerify/helang-moveVerify"
+  }
+}

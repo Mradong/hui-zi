@@ -1,7 +1,7 @@
 <template>
 	<view class="dream">
 		<nav-bar fontColor="#000" backState="2000" :home="false" :titleCenter="true" type="fixed" title="梦想基金"></nav-bar>
-		<view class="dream-banner">
+		<view class="dream-banner dominant-hue-bg-shade">
 			<view class="dream-banner-title">
 				想买就买的自由
 				<br />
@@ -13,7 +13,6 @@
 			</view>
 			<view class="icon-lyd-l"><image src="../../static/images/wenhao.svg" mode=""></image></view>
 			<view class="icon-lyd-r"><image src="../../static/images/shezhi.svg" mode=""></image></view>
-			<image src="../../static/images/fense_bg_02.png" mode=""></image>
 		</view>
 		<view class="dream-detail">
 			<view class="dream-detail-item">
@@ -33,15 +32,17 @@
 			</view>
 		</view>
 		<view class="dream-items">
-			<view class="dream-items-title">
-				<image src="../../static/images/aixin.svg" mode=""></image>
-				<text>梦想开始，快存入第一名启动梦想吧!</text>
+			<view class="dream-items-quesheng" v-if="!isLogin">
+				<image src="../../static/images/xiuxi.svg" mode=""></image>
+				<text>今天没有消息,好好休息一下</text>
 			</view>
-			<view class="dream-items-title">
-				<image src="../../static/images/aixin.svg" mode=""></image>
-				<text>本日项目</text>
+			<view class="dream-items-title" v-if="isLogin">
+				<image src="../../static/images/xiaoxi.svg" mode=""></image>
+				<text>小主，今天有消息啦,
+				请查收~
+				</text>
 			</view>
-			<view class="in-competition">
+			<view class="in-competition" v-if="isLogin">
 				<view class="today-item">
 					<view class="custom-area">
 						<view class="custom-area-item">
@@ -85,7 +86,7 @@
 									本期投标已经结束,去看一下>>
 								</view>
 								<view class="tf-l" v-if="!isOver"><button type="default" class="tf-button" @click="competition">修改一下</button></view>
-								<view class="tf-l" v-if="isOver"><button type="default" class="tf-button">取会结果</button></view>
+								<view class="tf-l" v-if="isOver"><button type="default" class="tf-button dominant-hue-button-bg-shade">取会结果</button></view>
 							</view>
 						</view>
 						<view class="custom-area-item">
@@ -108,7 +109,7 @@
 									{{ userName }}
 									本期投标已经结束,去看一下>>
 								</view>
-								<view class="tf-l"><button type="default" class="tf-button" @click="toRanking">取会结果</button></view>
+								<view class="tf-l"><button type="default" class="tf-button dominant-hue-button-bg-shade" @click="toRanking">取会结果</button></view>
 							</view>
 						</view>
 					</view>
@@ -118,12 +119,11 @@
 		
 		<view class="dream-tab">
 			<view class="dream-tab-y"><button class="button-y" @click="goMyItem">我的会子</button></view>
-			<view class="dream-tab-e"><button class="button-e" @click="goHuiZis">冲啊，路飞</button></view>
+			<view class="dream-tab-e"><button class="button-e dominant-hue-bg" @click="goHuiZis">冲啊，路飞</button></view>
 		</view>
 		<uni-popup ref="popup" type="dialog">
 		    <uni-popup-dialog type="warn" title="未登录" content="小主,是否前往登录~" :duration="2000" :before-close="true" @close="close" @confirm="confirm"></uni-popup-dialog>
 		</uni-popup>
-		
 	</view>
 </template>
 <script>
@@ -132,6 +132,7 @@ import uniCountdown from '@/components/uni-countdown/uni-countdown.vue';
 import uniPopup from '@/components/uni-popup/uni-popup.vue'
 import uniPopupDialog from '@/components/uni-popup/uni-popup-dialog.vue'
 import { getToken } from '@/utils/auth'
+import { getHomeTodayPay } from '@/api/home.js'
 export default {
 	data() {
 		return {
@@ -139,10 +140,21 @@ export default {
 			hour: 0,
 			minute: 0,
 			second: 0,
+			isLogin:false,
 			isOver:false,
 		};
 	},
-	onLoad() {},
+	onLoad() {
+		if( getToken() ){
+			this.isLogin  =  true ;
+			getHomeTodayPay().then(response =>{
+				console.log(response )
+			})
+		}
+		else{
+			this.isLogin  = false;
+		}
+	},
 	onShow() {
 		this.countTime();
 	},
@@ -199,7 +211,6 @@ export default {
 			}
 		},
 		close(done){
-			
 			done()
 		},
 		confirm(done){
@@ -294,7 +305,6 @@ export default {
 		box-shadow: 0 0 15px #d2cfcf;
 		border-radius: 10px;
 		display: flex;
-
 		&-item {
 			padding-top: 20upx;
 			flex: 1;
@@ -312,15 +322,34 @@ export default {
 	&-items {
 		margin: 20upx;
 		margin-bottom: 140upx;
-		&-title {
+		&-quesheng{
+			width: 90%;
+			height: 400upx;
+			image{
+				width: 360upx;
+				height: 360upx;
+				display: block;
+				margin: 0 auto;
+			}
 			text {
-				position: relative;
-				top: -10upx;
-				right: -10upx;
+				font-size: 36upx;
+				display: block;
+				text-align: center;
+			}
+		}
+		&-title {
+			
+			height: 100upx;
+			text {
+				float: left;
+				font-weight: bold;
+				margin-left: 10upx;
+				width:305upx;
 			}
 			image {
-				width: 50upx;
-				height: 50upx;
+				width: 100upx;
+				height: 100upx;
+				float: left;
 			}
 		}
 		.in-competition {
@@ -421,14 +450,12 @@ export default {
 						&-l {
 							flex: 1;
 							text-align: right;
-
 							.tf-button {
 								margin-top: 12upx;
 								width: 200upx;
 								height: 56upx;
 								color: #fff;
 								box-shadow: rgba(144, 192, 239, 1) solid 1px;
-								background: linear-gradient(to top right, #f38489, #ff525a);
 								border-radius: 4px;
 								font-size: 26upx;
 								line-height: 56upx;
@@ -456,7 +483,6 @@ export default {
 		&-e {
 			flex: 2;
 			.button-e {
-				background-color: #ff525a;
 				color: #ffffff;
 			}
 		}

@@ -98,14 +98,34 @@
   margin: 20rpx;
   margin-bottom: 140rpx;
 }
+.dream-items-quesheng {
+  width: 90%;
+  height: 400rpx;
+}
+.dream-items-quesheng image {
+  width: 360rpx;
+  height: 360rpx;
+  display: block;
+  margin: 0 auto;
+}
+.dream-items-quesheng text {
+  font-size: 36rpx;
+  display: block;
+  text-align: center;
+}
+.dream-items-title {
+  height: 100rpx;
+}
 .dream-items-title text {
-  position: relative;
-  top: -10rpx;
-  right: -10rpx;
+  float: left;
+  font-weight: bold;
+  margin-left: 10rpx;
+  width: 305rpx;
 }
 .dream-items-title image {
-  width: 50rpx;
-  height: 50rpx;
+  width: 100rpx;
+  height: 100rpx;
+  float: left;
 }
 .dream-items .in-competition .today-item .custom-area {
   width: 95%;
@@ -234,8 +254,6 @@
   height: 56rpx;
   color: #fff;
   box-shadow: #90c0ef solid 1px;
-  background: -webkit-linear-gradient(bottom left, #f38489, #ff525a);
-  background: linear-gradient(to top right, #f38489, #ff525a);
   border-radius: 4px;
   font-size: 26rpx;
   line-height: 56rpx;
@@ -265,7 +283,6 @@
           flex: 2;
 }
 .dream-tab-e .button-e {
-  background-color: #ff525a;
   color: #ffffff;
 }
 .dream-tab button,

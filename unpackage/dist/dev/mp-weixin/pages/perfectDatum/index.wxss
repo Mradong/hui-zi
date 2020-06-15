@@ -1,0 +1,44 @@
+.share-box-detail-msg {
+  width: 90%;
+  margin: 0 auto;
+}
+.share-box-detail-msg .text-style {
+  height: 84rpx;
+  padding-left: 40rpx;
+  padding-right: 40rpx;
+  color: #666666;
+  font-size: 14px;
+  border: 1px solid #dddddd;
+  background: #f4f4f4;
+  box-sizing: border-box;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  margin: 30rpx auto;
+}
+.verify {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  width: 100%;
+}
+.verify .ipt-default-current {
+  -webkit-box-flex: 3;
+  -webkit-flex: 3;
+          flex: 3;
+}
+.verify .sms-cd-btn {
+  -webkit-box-flex: 2;
+  -webkit-flex: 2;
+          flex: 2;
+  height: 84rpx;
+  line-height: 84rpx;
+  padding: 0 24rpx;
+  margin: 30rpx 10rpx;
+  color: #444444;
+  background: #ffe300;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 14px;
+}
+
