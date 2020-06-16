@@ -1,9 +1,11 @@
 <template>
 	<view class="login">
-		<nav-bar fontColor="#000" backState="1000" :home="false" :titleCenter="true" type="fixed" title="登录"></nav-bar>
+		<nav-bar ref="navBar" backState="1000" :home="false"  transparentFixedFontColor="#FFF" type="transparentFixed" title="登录">
+		<!-- <view class="icon_setUp" slot="transparentFixedRight">设置</view> -->
+		</nav-bar>
 		<view class="login-txt">授权登录使用王二狗</view>
-		<view class="login-bg"><image src="../../static/images/login.png" mode=""></image></view>
-		<view class="login-but"><button class="wx_login" open-type="getUserInfo" lang="zh_CN" @getuserinfo="appLoginWx">微信一键登录</button></view>
+		<view class="login-bg"><image src="../../static/images/login.jpg" mode=""></image></view>
+		<view class="login-but"><button class="wx_login " open-type="getUserInfo" lang="zh_CN" @getuserinfo="appLoginWx">微信一键登录</button></view>
 	</view>
 </template>
 
@@ -93,12 +95,13 @@ uni-page-body {
 .login {
 	width: 100%;
 	height: 100%;
+	overflow: hidden;
 	.login-bg {
 		width: 100%;
 		height: 100%;
 		image {
 			width: 100%;
-			height: 90%;
+			height: 100%;
 		}
 	}
 	.login-txt {
@@ -107,8 +110,9 @@ uni-page-body {
 		position: absolute;
 		top: 30%;
 		left: 50%;
-		color: #f5fcff;
+		color: #3e3938b3;
 		text-align: center;
+		z-index: 99;
 		transform: translate(-50%, -50%);
 	}
 	.login-but {
@@ -118,13 +122,11 @@ uni-page-body {
 		left: 50%;
 		transform: translate(-50%);
 		.wx_login {
-			background-color: #07c6fa;
-			color: #f5fcff;
+			background-color: #FFF;
+			color: #333;
 		}
 		.button-hover {
-			background-color: #07c6fa !important;
-			opacity: 0.7 !important;
-			color: #ffffff !important;
+			color: #000 !important;
 		}
 	}
 }
