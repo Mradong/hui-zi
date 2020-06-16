@@ -7,13 +7,21 @@ uni-page-body {
 .share {
   width: 100%;
   height: 100%;
+  overflow: hidden;
+}
+.share .fx_bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
 }
 .share-nav {
-  height: 80rpx;
+  height: 140rpx;
 }
 .share-box {
   width: 100%;
   height: 100%;
+  position: relative;
+  z-index: 99;
 }
 .share-box-top {
   display: -webkit-box;
@@ -39,10 +47,8 @@ uni-page-body {
   padding-top: 20rpx;
   width: 90%;
   height: 70%;
-  background-color: #FFFFFF;
 }
 .share-box-detail-card {
-  border: 1px solid #F0AD4E;
   border-radius: 5px;
   margin: 20rpx auto;
   width: 80%;
@@ -50,14 +56,13 @@ uni-page-body {
   padding: 20rpx;
 }
 .share-box-detail-card > view {
-  border-right: 1px solid #F0AD4E;
-  border-left: 1px solid #F0AD4E;
   line-height: 68rpx;
   color: #333;
   font-size: 36rpx;
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
+  border-bottom: 1px solid;
 }
 .share-box-detail-card > view text.name {
   display: inline-block;
@@ -68,11 +73,10 @@ uni-page-body {
   font-weight: 500;
   padding-left: 20rpx;
 }
-.share-box-detail-card:first-child {
-  border-top: 1px solid #F0AD4E;
-}
 .share-box-detail .share-button {
   position: relative;
   top: 120%;
+  color: #8e7d01;
+  background-color: #FFFFFF;
 }
 

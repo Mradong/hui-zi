@@ -1551,15 +1551,15 @@ uni$1;exports.default = _default;
 
 /***/ }),
 
-/***/ 108:
-/*!*******************************************************************!*\
-  !*** C:/Users/mi/Desktop/git-huizi/components/uni-popup/popup.js ***!
-  \*******************************************************************/
+/***/ 117:
+/*!***************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/hui-zi/components/uni-popup/popup.js ***!
+  \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _message = _interopRequireDefault(__webpack_require__(/*! ./message.js */ 109));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _message = _interopRequireDefault(__webpack_require__(/*! ./message.js */ 118));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 // 定义 type 类型:弹出类型：top/bottom/center
 var config = {
   // 顶部弹出
@@ -1586,10 +1586,10 @@ var config = {
 
 /***/ }),
 
-/***/ 109:
-/*!*********************************************************************!*\
-  !*** C:/Users/mi/Desktop/git-huizi/components/uni-popup/message.js ***!
-  \*********************************************************************/
+/***/ 118:
+/*!*****************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/hui-zi/components/uni-popup/message.js ***!
+  \*****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1739,9 +1739,9 @@ function normalizeComponent (
 /***/ }),
 
 /***/ 15:
-/*!****************************************************!*\
-  !*** C:/Users/mi/Desktop/git-huizi/store/index.js ***!
-  \****************************************************/
+/*!************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/hui-zi/store/index.js ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2755,40 +2755,10 @@ var index_esm = {
 
 /***/ }),
 
-/***/ 164:
-/*!*************************************************!*\
-  !*** C:/Users/mi/Desktop/git-huizi/api/home.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getHomeTodayPay = getHomeTodayPay;exports.getUserTAC = getUserTAC;var _request = _interopRequireDefault(__webpack_require__(/*! @/utils/request.js */ 18));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-
-
-/* 获取用户当日项目记录 */
-function getHomeTodayPay() {
-  var url = "/orange/home/subProject";
-  return _request.default.post({
-    url: url });
-
-
-}
-
-/* 获取用户总项目记录 */
-function getUserTAC() {
-  var url = "/orange/home/calculate/project";
-  return _request.default.post({
-    url: url });
-
-}
-
-/***/ }),
-
 /***/ 17:
-/*!*************************************************!*\
-  !*** C:/Users/mi/Desktop/git-huizi/api/user.js ***!
-  \*************************************************/
+/*!*********************************************************!*\
+  !*** C:/Users/Administrator/Desktop/hui-zi/api/user.js ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2832,9 +2802,9 @@ function upUserInfo(data) {
 /***/ }),
 
 /***/ 18:
-/*!******************************************************!*\
-  !*** C:/Users/mi/Desktop/git-huizi/utils/request.js ***!
-  \******************************************************/
+/*!**************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/hui-zi/utils/request.js ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2860,9 +2830,9 @@ $http;exports.default = _default;
 /***/ }),
 
 /***/ 19:
-/*!*******************************************************************************!*\
-  !*** C:/Users/mi/Desktop/git-huizi/components/xml-packaging/xml-packaging.js ***!
-  \*******************************************************************************/
+/*!***************************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/hui-zi/components/xml-packaging/xml-packaging.js ***!
+  \***************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9979,9 +9949,9 @@ if (hadRuntime) {
 /***/ }),
 
 /***/ 23:
-/*!*************************************************************************!*\
-  !*** C:/Users/mi/Desktop/git-huizi/components/xml-packaging/md5/MD5.js ***!
-  \*************************************************************************/
+/*!*********************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/hui-zi/components/xml-packaging/md5/MD5.js ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10181,9 +10151,9 @@ function Utf8Encode(string) {
 /***/ }),
 
 /***/ 24:
-/*!***************************************************!*\
-  !*** C:/Users/mi/Desktop/git-huizi/utils/auth.js ***!
-  \***************************************************/
+/*!***********************************************************!*\
+  !*** C:/Users/Administrator/Desktop/hui-zi/utils/auth.js ***!
+  \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10234,10 +10204,40 @@ module.exports = g;
 
 /***/ }),
 
+/***/ 31:
+/*!*********************************************************!*\
+  !*** C:/Users/Administrator/Desktop/hui-zi/api/home.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getHomeTodayPay = getHomeTodayPay;exports.getUserTAC = getUserTAC;var _request = _interopRequireDefault(__webpack_require__(/*! @/utils/request.js */ 18));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+
+/* 获取用户当日项目记录 */
+function getHomeTodayPay() {
+  var url = "/orange/home/subProject";
+  return _request.default.post({
+    url: url });
+
+
+}
+
+/* 获取用户总项目记录 */
+function getUserTAC() {
+  var url = "/orange/home/calculate/project";
+  return _request.default.post({
+    url: url });
+
+}
+
+/***/ }),
+
 /***/ 4:
-/*!************************************************!*\
-  !*** C:/Users/mi/Desktop/git-huizi/pages.json ***!
-  \************************************************/
+/*!********************************************************!*\
+  !*** C:/Users/Administrator/Desktop/hui-zi/pages.json ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11145,21 +11145,21 @@ module.exports = {"_from":"@dcloudio/uni-stat@alpha","_id":"@dcloudio/uni-stat@2
 /***/ }),
 
 /***/ 7:
-/*!*****************************************************************!*\
-  !*** C:/Users/mi/Desktop/git-huizi/pages.json?{"type":"style"} ***!
-  \*****************************************************************/
+/*!*************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/hui-zi/pages.json?{"type":"style"} ***!
+  \*************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/home/index": { "navigationStyle": "custom", "usingComponents": { "uni-countdown": "/components/uni-countdown/uni-countdown", "uni-popup": "/components/uni-popup/uni-popup", "uni-popup-dialog": "/components/uni-popup/uni-popup-dialog" }, "usingAutoImportComponents": { "uni-countdown": "/components/uni-countdown/uni-countdown", "uni-popup": "/components/uni-popup/uni-popup" } }, "pages/huiHzs/index": { "navigationStyle": "custom", "usingComponents": { "wuc-tab": "/components/wuc-tab/wuc-tab" }, "usingAutoImportComponents": { "wuc-tab": "/components/wuc-tab/wuc-tab" } }, "pages/myItem/index": { "navigationStyle": "custom", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/itemDetail/index": { "navigationStyle": "custom", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/competition/index": { "navigationStyle": "custom", "usingComponents": { "uni-popup": "/components/uni-popup/uni-popup", "uni-popup-message": "/components/uni-popup/uni-popup-message", "uni-popup-dialog": "/components/uni-popup/uni-popup-dialog" }, "usingAutoImportComponents": { "uni-popup": "/components/uni-popup/uni-popup" } }, "pages/ranking/index": { "navigationStyle": "custom", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/share/index": { "navigationStyle": "custom", "usingComponents": { "move-verify": "/components/helang-moveVerify/helang-moveVerify" }, "usingAutoImportComponents": {} }, "pages/login/index": { "navigationStyle": "custom", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/perfectDatum/index": { "navigationStyle": "custom" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/home/index": { "navigationStyle": "custom" }, "pages/huiHzs/index": { "navigationStyle": "custom" }, "pages/myItem/index": { "navigationStyle": "custom" }, "pages/itemDetail/index": { "navigationStyle": "custom" }, "pages/competition/index": { "navigationStyle": "custom" }, "pages/ranking/index": { "navigationStyle": "custom" }, "pages/share/index": { "navigationStyle": "custom" }, "pages/login/index": { "navigationStyle": "custom" }, "pages/perfectDatum/index": { "navigationStyle": "custom" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 
 /***/ 8:
-/*!****************************************************************!*\
-  !*** C:/Users/mi/Desktop/git-huizi/pages.json?{"type":"stat"} ***!
-  \****************************************************************/
+/*!************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/hui-zi/pages.json?{"type":"stat"} ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

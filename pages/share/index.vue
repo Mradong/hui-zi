@@ -1,5 +1,6 @@
 <template>
 	<view class="share dominant-hue-bg">
+		<image class="fx_bg" src="../../static/images/fx_bg.jpg" mode=""></image>
 		<view class="share-nav">
 			<nav-bar ref="navBar" backState="2000" :home="false"  transparentFixedFontColor="#FFF" type="transparentFixed" title="分享">
 			<!-- <view class="icon_setUp" slot="transparentFixedRight">设置</view> -->
@@ -30,8 +31,8 @@
 					<view class="">
 						<text class="name">预计开始时间:</text><text>2019-10-09</text>
 					</view>
-					<button type="default" class="share-button dominant-hue-bg" @click="join" v-if="isShow"> {{ buttonText }}</button>
-					<button type="default" class="share-button dominant-hue-bg" @click="toLogin" v-if="!isShow"> {{ buttonText}}</button>
+					<button type="default" class="share-button " @click="join" v-if="isShow"> {{ buttonText }}</button>
+					<button type="default" class="share-button " @click="toLogin" v-if="!isShow"> {{ buttonText}}</button>
 				</view>
 			</view>
 			
@@ -60,7 +61,7 @@
 				//=> 获取用户信息,判断该项目是否已经参加
 			}
 			else{
-				this.buttonText ="登录qu~";
+				this.buttonText ="qu登录~";
 			}
 				
 		},
@@ -116,12 +117,21 @@
 	.share{
 		width: 100%;
 		height: 100%;
+		overflow: hidden;
+		.fx_bg{
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			
+		}
 		&-nav{
-			height: 80upx;
+			height: 140upx;
 		}
 		&-box{
 			width: 100%;
 			height: 100%;
+			position: relative;
+			z-index: 99;
 			&-top{
 				display: flex;
 				margin-left:40upx;
@@ -144,21 +154,19 @@
 				padding-top: 20upx;
 				width: 90%;
 				height: 70%;
-				background-color: #FFFFFF;
 				&-card{
-					border: 1px solid #F0AD4E;
+
 					border-radius: 5px;
 					margin: 20upx auto;
 					width: 80%;
 					height: 30%;
 					padding: 20upx;
 					>view{
-						border-right: 1px solid #F0AD4E;
-						border-left: 1px solid #F0AD4E;
 						line-height:68upx;
 						color: #333;
 						font-size: 36upx;
 						align-items: center;
+						border-bottom: 1px solid;
 						text.name{
 							display: inline-block;
 							font-weight: bold;
@@ -171,12 +179,14 @@
 						}
 					}
 					&:first-child{
-						border-top: 1px solid #F0AD4E;
+
 					}
 				}
 				.share-button{
 					position: relative;
 					top: 120%;
+					color: #8e7d01;
+					background-color: #FFFFFF;
 				}
 					
 			}

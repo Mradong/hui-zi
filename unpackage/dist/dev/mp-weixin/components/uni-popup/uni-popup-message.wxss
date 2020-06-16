@@ -24,7 +24,7 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.uni-popup-message.data-v-629839d0 {
+.uni-popup-message.data-v-8a9ce1fe {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -38,32 +38,32 @@
   border-style: solid;
   border-width: 1px;
 }
-.uni-popup-message-text.data-v-629839d0 {
+.uni-popup-message-text.data-v-8a9ce1fe {
   font-size: 14px;
   padding: 0;
 }
-.uni-popup__success.data-v-629839d0 {
+.uni-popup__success.data-v-8a9ce1fe {
   background-color: #e1f3d8;
 }
-.uni-popup__success-text.data-v-629839d0 {
+.uni-popup__success-text.data-v-8a9ce1fe {
   color: #67C23A;
 }
-.uni-popup__warn.data-v-629839d0 {
+.uni-popup__warn.data-v-8a9ce1fe {
   background-color: #faecd8;
 }
-.uni-popup__warn-text.data-v-629839d0 {
+.uni-popup__warn-text.data-v-8a9ce1fe {
   color: #E6A23C;
 }
-.uni-popup__error.data-v-629839d0 {
+.uni-popup__error.data-v-8a9ce1fe {
   background-color: #fde2e2;
 }
-.uni-popup__error-text.data-v-629839d0 {
+.uni-popup__error-text.data-v-8a9ce1fe {
   color: #F56C6C;
 }
-.uni-popup__info.data-v-629839d0 {
+.uni-popup__info.data-v-8a9ce1fe {
   background-color: #F2F6FC;
 }
-.uni-popup__info-text.data-v-629839d0 {
+.uni-popup__info-text.data-v-8a9ce1fe {
   color: #909399;
 }
 

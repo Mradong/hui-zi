@@ -49,7 +49,7 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.uni-countdown.data-v-35c2ce40 {
+.uni-countdown.data-v-3d37ee11 {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -62,7 +62,7 @@
           justify-content: flex-start;
   padding: 2rpx 0;
 }
-.uni-countdown__splitor.data-v-35c2ce40 {
+.uni-countdown__splitor.data-v-3d37ee11 {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -73,7 +73,7 @@
   padding: 5rpx;
   font-size: 24rpx;
 }
-.uni-countdown__number.data-v-35c2ce40 {
+.uni-countdown__number.data-v-3d37ee11 {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
