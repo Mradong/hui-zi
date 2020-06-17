@@ -33,20 +33,30 @@
 	.fl{float: left;}
 	/* 字体主色调 */
 	.dominant-hue{
-		color: #FADC00;
+		color: #FEDD12;
 	}
 	/* 背景主色调 */
 	.dominant-hue-bg{
-		background-color: #FADC00 !important;
+		background-color: #FEDD12 !important;
 	}
 	/* 背景渐变主色调 */
 	.dominant-hue-bg-shade{
-		background: linear-gradient(to top right, #FADC00, #c9f5f7);
+		background: linear-gradient(to top right, #FEDD12, #c9f5f7);
+	}
+	/* 按钮红色主色调 */
+	.dominant-hue-button-bg-red{
+		color: #FBF0DC !important;
+		background-color: #FD5234 !important;
+	}
+	/* 按钮黄色主色调 */
+	.dominant-hue-button-bg-yell{
+		color:#250D00;
+		background-color: #FEDD12 !important;
 	}
 	/* 按钮渐变主色调 */
 	.dominant-hue-button-bg-shade{
 		background: linear-gradient(to top right, #f38489, #ff525a);
 	}
 	/* 按钮按住状态主色调 */
-	.button-hover{ opacity: 0.7;color: #FFFFFF !important;}
+	.button-hover{ background-color: #999999; opacity: 0.7;color: #FFFFFF !important;}
 </style>

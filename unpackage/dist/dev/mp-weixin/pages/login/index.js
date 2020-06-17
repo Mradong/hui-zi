@@ -143,8 +143,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
 var _auth = __webpack_require__(/*! @/utils/auth */ 24);
 var _user = __webpack_require__(/*! @/api/user.js */ 17); //
 //
@@ -155,9 +153,9 @@ var _user = __webpack_require__(/*! @/api/user.js */ 17); //
 //
 //
 //
-//
-//
-var _default = { data: function data() {return { from: '' };}, methods: { appLoginWx: function appLoginWx() {var _that = this;uni.getProvider({ service: 'oauth',
+var _default = { data: function data() {return { from: '' };}, methods: { appLoginWx: function appLoginWx() {var _that = this;
+      uni.getProvider({
+        service: 'oauth',
         success: function success(res) {
           if (~res.provider.indexOf('weixin')) {
             uni.login({

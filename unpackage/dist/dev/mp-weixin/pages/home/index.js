@@ -285,7 +285,7 @@ var _home = __webpack_require__(/*! @/api/home.js */ 31);function _objectSpread(
 
   },
   onLoad: function onLoad() {
-    if ((0, _auth.getToken)()) {
+    if (!(0, _auth.getToken)()) {
       this.isLogin = true;
       // getHomeTodayPay().then(response =>{
       // 	console.log(response )

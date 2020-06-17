@@ -1,8 +1,8 @@
 <template>
 	<view class="per-datum dominant-hue-bg">
 		<view class="per-datum-nav">
-			<nav-bar ref="navBar" backState="1000" :home="false"  transparentFixedFontColor="#FFF" type="transparentFixed" title="完善个人资料">
-			<!-- <view class="icon_setUp" slot="transparentFixedRight">设置</view> -->
+			<nav-bar ref="navBar" backState="1000" :home="false" transparentFixedFontColor="#FFF" type="transparentFixed" title="完善个人资料">
+				<!-- <view class="icon_setUp" slot="transparentFixedRight">设置</view> -->
 			</nav-bar>
 		</view>
 		<view class="per-datum-logo">
@@ -11,181 +11,216 @@
 				<text>陈一发儿</text>
 			</view>
 		</view>
-		<view class="clear">
-		</view>
+		<view class="clear"></view>
 		<view class="per-datum-msg">
-			<input type="text" v-model="username" placeholder="真实姓名" class="text-style " >
-			<input type="text" v-model="phone" placeholder="手机号" class="text-style" >
-			<view>
-				<move-verify @result='verifyResult' ref="verifyElement"></move-verify>
-			</view>
+			<input type="text" v-model="username" placeholder="真实姓名" class="text-style" />
+			<input type="number" v-model="phone" placeholder="手机号" class="text-style" />
+			<view><move-verify @result="verifyResult" ref="verifyElement"></move-verify></view>
 			<view class="verify" v-if="isVerify">
-				<input type="text" v-model="username" placeholder="验证码" class="text-style ipt-default-current" >
-				<button type="default" class="sms-cd-btn" id="sms-send-cd-btn" :disabled="!isSend" @click="sendVerify" >
-				<text v-if="isSend">{{ sendText }}</text>
-				<uni-countdown
-				v-if="!isSend"
-				color="#FFFFFF"
-				background-color="#ffe300"
-				border-color="#00B26A"
-				:show-day="false"
-				:hour="0"
-				:minute="0"
-				:second="9"
-				:showPer="false"
-				:showColon="false"
-				@timeup="isOver"
-			></uni-countdown>
-			</button>
+				<input type="number" v-model="verify" placeholder="验证码" class="text-style ipt-default-current" maxlength="4" />
+				<button type="default" class="sms-cd-btn" id="sms-send-cd-btn" :disabled="!isSend" @click="sendVerify">
+					<text v-if="isSend">{{ sendText }}</text>
+					<uni-countdown
+						v-if="!isSend"
+						color="#989595"
+						background-color="#ffe300"
+						border-color="#00B26A"
+						:show-day="false"
+						:hour="0"
+						:minute="0"
+						:second="9"
+						:showPer="false"
+						:showColon="false"
+						@timeup="isOver"
+					></uni-countdown>
+				</button>
 			</view>
-			<button type="default" class="affirm-btn dominant-hue-bg" :disabled="isSure" >提交修改</button>
-
+			<button type="default" class="affirm-btn dominant-hue-button-bg-yell" @tap="submit">确认</button>
 		</view>
 
-		<view class="per-datum-bg">
-			<image src="../../static/images/perfect.jpg" mode=""></image>
-		</view>
+		<view class="per-datum-bg"><image src="../../static/images/perfect.jpg" mode=""></image></view>
 	</view>
 </template>
 
 <script>
-	import uniCountdown from '@/components/uni-countdown/uni-countdown.vue';
-	import moveVerify from "@/components/helang-moveVerify/helang-moveVerify.vue"
-	export default {
-		data() {
-			return {
-				username:"",
-				phone:"",
-				resultData:{},
-				isSure:true,
-				isVerify:false,
-				isSend:true,
-				sendText:"发送验证码"
+import uniCountdown from '@/components/uni-countdown/uni-countdown.vue';
+import moveVerify from '@/components/helang-moveVerify/helang-moveVerify.vue';
+export default {
+	data() {
+		return {
+			username: '',
+			phone: '',
+			verify: '',
+			//验证的规则
+			rules:{
+				username:{
+					rule:/\S/,
+					msg:"姓名不能为空"
+				},
+				phone:{
+					rule:/^1[3|4|5|6|7|8][0-9]\d{8,8}$/,
+					msg:"手机号码不正确"
+				},
+				verify:{
+					rule:/^[A-Za-z0-9]{4}$/,
+					msg:"验证码不正确"
+				},
+			},
+			resultData: {},
+			isVerify: false,
+			isSend: true,
+			sendText: '发送验证码'
+		};
+	},
+	components: { 'move-verify': moveVerify, uniCountdown },
+	methods: {
+		/* 校验结果回调函数 */
+		verifyResult(res) {
+			if (res.flag) {
+				this.isVerify = true;
 			}
+			this.resultData = res;
 		},
-		components: {  "move-verify":moveVerify ,uniCountdown },
-		methods:{
-			/* 校验结果回调函数 */
-			verifyResult(res){
-				if(res.flag){
-					this.isVerify = true ;
-				}
-				this.resultData = res;
-			},
-			/* 校验插件重置 */
-			verifyReset(){
-				this.$refs.verifyElement.reset();
-
-				/* 删除当前页面的数据 */
-				this.resultData = {};
-			},
-			isOver(){
-				this.sendText="再次发送"
-				this.isSend = true;
-			},
-			sendVerify(){
-				console.log(111)
-				this.isSend = false;
+		/* 校验插件重置 */
+		verifyReset() {
+			this.$refs.verifyElement.reset();
+			/* 删除当前页面的数据 */
+			this.resultData = {};
+		},
+		isOver() {
+			this.sendText = '再次发送';
+			this.isSend = true;
+		},
+		sendVerify() {
+			this.isSend = false;
+		},
+		//
+		submit(){
+			if(!this.validate('username')) return;
+			if(!this.validate("phone"))  return;
+			if(!this.validate("verify"))  return;
+			uni.showLoading({
+				title:"提交中"
+			});
+			setTimeout(()=>{
+				//隐藏登录状态
+				uni.hideLoading();
+				console.log( "111 ")
+			},2000)
+		},
+		//判断验证是否符合要求
+		validate(key){
+			let bool=true;
+			if(!this.rules[key].rule.test(this[key])){
+				//提示信息
+				uni.showToast({
+					title:this.rules[key].msg,
+					icon: 'none' 
+				})
+				//取反
+				bool=false;
+				return false;
 			}
+			return bool;
 		}
-	}
+	},
+};
 </script>
 
 <style lang="less">
-	html,body,uni-page-body{
-	 width: 100%;
-	 height: 100%;
+html,
+body,
+uni-page-body {
+	width: 100%;
+	height: 100%;
+}
+/deep/.uni-countdown__number {
+	width: 100% !important;
+	height: 64upx !important;
+	font-size: 32upx !important;
+}
+.per-datum {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+	&-nav {
+		height: 90upx;
 	}
-	/deep/.uni-countdown__number{
-		width: 100% !important;
-		height: 64upx !important;
-		font-size: 32upx !important;
+	&-logo {
+		width: 100%;
+		height: 400upx;
+		&-msg {
+			position: absolute;
+			z-index: 99;
+			top: 10%;
+			left: 50%;
+			transform: translate(-50%);
+			image {
+				border-radius: 50%;
+				width: 200upx;
+				height: 200upx;
+			}
+			text {
+				display: block;
+				text-align: center;
+				color: #333;
+			}
+		}
 	}
-	.per-datum{
+	&-msg {
+		width: 80%;
+		margin: 0 auto;
+		position: relative;
+		z-index: 99;
+		.text-style {
+			height: 84upx;
+			padding-left: 40upx;
+			padding-right: 40upx;
+			color: #666666;
+			font-size: 14px;
+			border: 1px solid #dddddd;
+			background: #f4f4f4;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+			border-radius: 4px;
+			-webkit-border-radius: 4px;
+			-moz-border-radius: 4px;
+			margin: 30upx auto;
+		}
+	}
+	&-bg {
 		width: 100%;
 		height: 100%;
-		overflow: hidden;
-		position: relative;
-		&-nav{
-			height: 90upx;
-		}
-		&-logo{
-			width: 100%;
-			height: 400upx;
-			&-msg{
-				position: absolute;
-				z-index: 99;
-				top: 10%;
-				left: 50%;
-				transform: translate(-50%);
-				image{
-					border-radius: 50%;
-					width: 200upx;
-					height: 200upx;
-				}
-				text{
-					display: block;
-					text-align: center;
-					color: #333;
-				}
-			}
-
-		}
-		&-msg{
-			width: 80%;
-			margin: 0 auto;
-			position: relative;
-			z-index: 99;
-			.text-style {
-			    height: 84upx;
-			    padding-left: 40upx;
-			    padding-right: 40upx;
-			    color: #666666;
-			    font-size: 14px;
-			    border: 1px solid #dddddd;
-			    background: #f4f4f4;
-			    -webkit-box-sizing: border-box;
-			    -moz-box-sizing: border-box;
-			    box-sizing: border-box;
-			    border-radius: 4px;
-			    -webkit-border-radius: 4px;
-			    -moz-border-radius: 4px;
-				margin: 30upx auto;
-			}
-		}
-		&-bg{
+		position: absolute;
+		top: 0;
+		image {
 			width: 100%;
 			height: 100%;
-			position: absolute;
-			top: 0;
-			image{
-				width: 100%;
-				height: 100%;
-			}
-		}
-		.verify{
-			display: flex;
-			width: 100%;
-			.ipt-default-current{
-				flex: 3;
-			}
-			.sms-cd-btn{
-				flex: 2;
-				height: 84upx;
-				line-height: 84upx;
-				padding: 0 24upx;
-				margin: 30upx 10upx ;
-				color: #444444;
-				background: #ffe300;
-				border-radius: 4px;
-				text-align: center;
-				font-size: 14px;
-			}
-		
-		}
-		.affirm-btn{
-			margin-top: 40upx;
 		}
 	}
+	.verify {
+		display: flex;
+		width: 100%;
+		.ipt-default-current {
+			flex: 3;
+		}
+		.sms-cd-btn {
+			flex: 2;
+			height: 84upx;
+			line-height: 84upx;
+			padding: 0 24upx;
+			margin: 30upx 10upx;
 
+			background: #ffe300;
+			border-radius: 4px;
+			text-align: center;
+			font-size: 14px;
+		}
+	}
+	.affirm-btn {
+		margin-top: 40upx;
+	}
+}
 </style>

@@ -85,8 +85,8 @@
 								<view class="tf-r" v-if="isOver">
 									本期投标已经结束,去看一下>>
 								</view>
-								<view class="tf-l" v-if="!isOver"><button type="default" class="tf-button" @click="competition">修改一下</button></view>
-								<view class="tf-l" v-if="isOver"><button type="default" class="tf-button dominant-hue-button-bg-shade">取会结果</button></view>
+								<view class="tf-l" v-if="!isOver"><button type="default" class="tf-button dominant-hue-button-bg-red" @click="competition">修改一下</button></view>
+								<view class="tf-l" v-if="isOver"><button type="default" class="tf-button dominant-hue-button-bg-yell">取会结果</button></view>
 							</view>
 						</view>
 						<view class="custom-area-item">
@@ -109,7 +109,7 @@
 									{{ userName }}
 									本期投标已经结束,去看一下>>
 								</view>
-								<view class="tf-l"><button type="default" class="tf-button dominant-hue-button-bg-shade" @click="toRanking">取会结果</button></view>
+								<view class="tf-l"><button type="default" class="tf-button dominant-hue-button-bg-yell" @click="toRanking">取会结果</button></view>
 							</view>
 						</view>
 					</view>
@@ -118,8 +118,8 @@
 		</view>
 		
 		<view class="dream-tab">
-			<view class="dream-tab-y"><button class="button-y" @click="goMyItem">我的会子</button></view>
-			<view class="dream-tab-e"><button class="button-e dominant-hue-bg" @click="goHuiZis">冲啊，路飞</button></view>
+			<view class="dream-tab-y"><button class="dominant-hue-button-bg-red" @click="goMyItem">我的会子</button></view>
+			<view class="dream-tab-e"><button class="dominant-hue-button-bg-yell" @click="goHuiZis">冲啊，路飞</button></view>
 		</view>
 		<uni-popup ref="popup" type="dialog">
 		    <uni-popup-dialog type="warn" title="未登录" content="小主,是否前往登录~" :duration="2000" :before-close="true" @close="close" @confirm="confirm"></uni-popup-dialog>
@@ -145,7 +145,7 @@ export default {
 		};
 	},
 	onLoad() {
-		if( getToken() ){
+		if( !getToken() ){
 			this.isLogin  =  true ;
 			// getHomeTodayPay().then(response =>{
 			// 	console.log(response )
@@ -459,7 +459,6 @@ export default {
 								margin-top: 12upx;
 								width: 200upx;
 								height: 56upx;
-								color: #fff;
 								box-shadow: rgba(144, 192, 239, 1) solid 1px;
 								border-radius: 4px;
 								font-size: 26upx;
@@ -482,13 +481,14 @@ export default {
 		&-y {
 			flex: 1;
 			.button-y {
-				color: #ff525a;
+				color: #FBF0DC;
+				background-color: #FD5234;
 			}
 		}
 		&-e {
 			flex: 2;
 			.button-e {
-				color: #ffffff;
+				color:#250D00;
 			}
 		}
 		button,

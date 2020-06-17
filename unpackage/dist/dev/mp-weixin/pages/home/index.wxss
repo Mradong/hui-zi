@@ -252,7 +252,6 @@
   margin-top: 12rpx;
   width: 200rpx;
   height: 56rpx;
-  color: #fff;
   box-shadow: #90c0ef solid 1px;
   border-radius: 4px;
   font-size: 26rpx;
@@ -275,7 +274,8 @@
           flex: 1;
 }
 .dream-tab-y .button-y {
-  color: #ff525a;
+  color: #FBF0DC;
+  background-color: #FD5234;
 }
 .dream-tab-e {
   -webkit-box-flex: 2;
@@ -283,7 +283,7 @@
           flex: 2;
 }
 .dream-tab-e .button-e {
-  color: #ffffff;
+  color: #250D00;
 }
 .dream-tab button,
 .dream-tab button::after {

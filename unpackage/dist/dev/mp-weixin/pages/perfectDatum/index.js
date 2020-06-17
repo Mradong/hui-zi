@@ -136,13 +136,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uniCountdown = function uniCountdown() {return __webpack_require__.e(/*! import() | components/uni-countdown/uni-countdown */ "components/uni-countdown/uni-countdown").then(__webpack_require__.bind(null, /*! @/components/uni-countdown/uni-countdown.vue */ 105));};var moveVerify = function moveVerify() {return __webpack_require__.e(/*! import() | components/helang-moveVerify/helang-moveVerify */ "components/helang-moveVerify/helang-moveVerify").then(__webpack_require__.bind(null, /*! @/components/helang-moveVerify/helang-moveVerify.vue */ 142));};var _default =
-
-
-
-
-
-
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uniCountdown = function uniCountdown() {return __webpack_require__.e(/*! import() | components/uni-countdown/uni-countdown */ "components/uni-countdown/uni-countdown").then(__webpack_require__.bind(null, /*! @/components/uni-countdown/uni-countdown.vue */ 105));};var moveVerify = function moveVerify() {return __webpack_require__.e(/*! import() | components/helang-moveVerify/helang-moveVerify */ "components/helang-moveVerify/helang-moveVerify").then(__webpack_require__.bind(null, /*! @/components/helang-moveVerify/helang-moveVerify.vue */ 142));};var _default =
 
 
 
@@ -192,16 +186,31 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 {
   data: function data() {
     return {
-      username: "",
-      phone: "",
+      username: '',
+      phone: '',
+      verify: '',
+      //验证的规则
+      rules: {
+        username: {
+          rule: /\S/,
+          msg: "姓名不能为空" },
+
+        phone: {
+          rule: /^1[3|4|5|6|7|8][0-9]\d{8,8}$/,
+          msg: "手机号码不正确" },
+
+        verify: {
+          rule: /^[A-Za-z0-9]{4}$/,
+          msg: "验证码不正确" } },
+
+
       resultData: {},
-      isSure: true,
       isVerify: false,
       isSend: true,
-      sendText: "发送验证码" };
+      sendText: '发送验证码' };
 
   },
-  components: { "move-verify": moveVerify, uniCountdown: uniCountdown },
+  components: { 'move-verify': moveVerify, uniCountdown: uniCountdown },
   methods: {
     /* 校验结果回调函数 */
     verifyResult: function verifyResult(res) {
@@ -213,18 +222,46 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     /* 校验插件重置 */
     verifyReset: function verifyReset() {
       this.$refs.verifyElement.reset();
-
       /* 删除当前页面的数据 */
       this.resultData = {};
     },
     isOver: function isOver() {
-      this.sendText = "再次发送";
+      this.sendText = '再次发送';
       this.isSend = true;
     },
     sendVerify: function sendVerify() {
-      console.log(111);
       this.isSend = false;
+    },
+    //
+    submit: function submit() {
+      if (!this.validate('username')) return;
+      if (!this.validate("phone")) return;
+      if (!this.validate("verify")) return;
+      uni.showLoading({
+        title: "提交中" });
+
+      setTimeout(function () {
+        //隐藏登录状态
+        uni.hideLoading();
+        console.log("111 ");
+      }, 2000);
+    },
+    //判断验证是否符合要求
+    validate: function validate(key) {
+      var bool = true;
+      if (!this.rules[key].rule.test(this[key])) {
+        //提示信息
+        uni.showToast({
+          title: this.rules[key].msg,
+          icon: 'none' });
+
+        //取反
+        bool = false;
+        return false;
+      }
+      return bool;
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
