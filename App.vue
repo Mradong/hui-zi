@@ -41,7 +41,7 @@
 	}
 	/* 背景渐变主色调 */
 	.dominant-hue-bg-shade{
-		background: linear-gradient(to top right, #FEDD12, #c9f5f7);
+		background: linear-gradient(to top right, #FEDD12, #f38489);
 	}
 	/* 按钮红色主色调 */
 	.dominant-hue-button-bg-red{
@@ -58,5 +58,5 @@
 		background: linear-gradient(to top right, #f38489, #ff525a);
 	}
 	/* 按钮按住状态主色调 */
-	.button-hover{ background-color: #999999; opacity: 0.7;color: #FFFFFF !important;}
+	.button-hover{color: #bbb19e !important;}
 </style>

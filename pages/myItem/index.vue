@@ -1,49 +1,85 @@
 <template>
 	<view class="my-item">
-		<nav-bar fontColor="#000" backState="1000" :home="false" :titleCenter="true" type="fixed" title="我的项目">
-		</nav-bar>
-		<view class="item-chunk  clear">
+		<view class="share-nav">
+			<nav-bar ref="navBar" backState="1000" :home="false"  transparentFixedFontColor="#FFF" type="transparentFixed" title="我的项目">
+			<!-- <view class="icon_setUp" slot="transparentFixedRight">设置</view> -->
+			</nav-bar>
+		</view>
+		<view class="item-chunk clear">
+		</view>
+		<view class="item-card">
+			
 		</view>
 		<view class="items">
-			<view class="item-table">
+			<view class="item" @click="toItemDetail()">
 				<view class="item-title">
-					项目名称
+					王二狗500
 				</view>
-				<view class="item-title">
-					上期收益
-				</view>
-				<view class="item-title">
-					项目总收益
-				</view>
-			</view>
-			<view class="item" v-for=" item,index in 5" :key="index" @click="toItemDetail( index )">
-				<view class="item-content">
-					<view class="item-content-main">
-						陈一发儿
+				<view class="item-detail">
+					<view class="item-detail-money">
+						<view class="item-detail-money-t">
+							已缴期数(期)
+						</view>
+						<view class="item-detail-money-b">
+							5
+						</view>
 					</view>
-					<view class="item-content-minor">
-						已缴纳 <text> 2 </text> 期
+					<view class="item-detail-money">
+						<view class="item-detail-money-t">
+							本期收益(元)
+						</view>
+						<view class="item-detail-money-b">
+							0.00
+						</view>
 					</view>
-				</view>
-				<view class="item-content">
-					<view class="item-content-main">
-						+
-						<text>111</text>
+					<view class="item-detail-money">
+						<view class="item-detail-money-t">
+							累计收益(元)
+						</view>
+						<view class="item-detail-money-b">
+							0.00
+						</view>
 					</view>
-					<view class="item-content-minor">
-						缴费 <text> 222 </text>元
-					</view>
-				</view>
-				<view class="item-content">
-					<view class="item-content-main">
-						+
-						<text>20000</text>
-					</view>
-					<view class="item-content-minor">
-						总缴费 <text> 15000 </text>元
+					<view class="item-detail-go">
+						<image src="../../static/images/yjt.svg" mode=""></image>
 					</view>
 				</view>
 			</view>
+			<view class="item" @click="toItemDetail()">
+				<view class="item-title">
+					王二狗500
+				</view>
+				<view class="item-detail">
+					<view class="item-detail-money">
+						<view class="item-detail-money-t">
+							已缴期数(期)
+						</view>
+						<view class="item-detail-money-b">
+							5
+						</view>
+					</view>
+					<view class="item-detail-money">
+						<view class="item-detail-money-t">
+							本期收益(元)
+						</view>
+						<view class="item-detail-money-b">
+							0.00
+						</view>
+					</view>
+					<view class="item-detail-money">
+						<view class="item-detail-money-t">
+							累计收益(元)
+						</view>
+						<view class="item-detail-money-b">
+							0.00
+						</view>
+					</view>
+					<view class="item-detail-go">
+						<image src="../../static/images/yjt.svg" mode=""></image>
+					</view>
+				</view>
+			</view>
+			
 		</view>
 	</view>
 </template>
@@ -69,63 +105,64 @@
 </script>
 
 <style lang="less">
+	html,body,uni-page-body{
+			 width: 100%;
+			 height: 100%;
+	}
 	.my-item{
-		width: 95%;
-		margin: 0 auto ;
+		width: 100%;
+		height: 100%;
+		background-color: #F0EFF5;
 		.item-chunk{
-			height: 250upx;
-			margin: 20upx 0 40upx;
-			background-image: linear-gradient(to bottom right, #f5bdcb, #fceee2);
+			height: 400upx;
+			background-color: #4563C2;
 			border-radius: 6upx;
 			box-shadow: 0 2px 2px #d1d1d1;
 		}
-		
+		.item-card{
+			height: 4upx;
+			background-color: #FFFFFF;
+		}
 		.items{
-			.item-table{
-				display: flex;
-				margin: 20upx 0 10upx;
-				padding-bottom: 10upx;
-				border-bottom: 1px solid #C0C0C0;
-				.item-title{
-					flex: 2;
-					text-align: center;
-					font-weight: 700;
-					font-family:SimSun,Microsoft JhengHei,Georgia,Serif;
-				}
-			}
 			.item{
-				
-				display: flex;
-				border-bottom: 1px dashed #C0C0C0;
-				.item-content{
-					flex: 2;
-					text-align: center;
+				margin-top: 30upx;
+				background-color: #FFFFFF;
+				&-title{
+					height: 90upx;
+					line-height: 90upx;
+					margin-left: 20upx;
+					border-bottom: 1px solid #F0EFF5;
+					font-size: 40upx;
+					color: #272931;
+				}
+				&-detail{
+					height: 140upx; 
+					margin-left: 20upx;
+					margin-top: 20upx;
 					display: flex;
-					padding: 10upx 0 ;
-					flex-direction: column;
-						text{
-							margin: 0 5upx;
+					font-size: 26upx;
+					color: #969696;
+					
+					&-money{
+						flex: 3;
+						text-align: left;
+						&-b{
+							margin-top: 20upx;
+							font-size: 40upx;
+							color: #272931;
 						}
-					&-main,&-minor{
+					}
+					&-go{
+						image{
+							width: 40upx;
+							height: 40upx;
+						}
 						flex: 1;
-						
-					}
-					&-main{
-						font-size: 36upx;
-						line-height:60upx;
-						text{
-							font-size: 46upx;
-							color: #f31d1d;
-							margin: 0 10upx;
-						}
-					}
-					&-minor{
-						font-size: 24upx;
-						line-height:30upx;
-						color: #C8C7CC;
+						line-height: 140upx;
 					}
 				}
 			}
+
 		}
 	}
 </style>

@@ -2,15 +2,6 @@
 	<view class="dream">
 		<nav-bar fontColor="#000" backState="2000" :home="false" :titleCenter="true" type="fixed" title="梦想基金"></nav-bar>
 		<view class="dream-banner dominant-hue-bg-shade">
-			<view class="dream-banner-title">
-				想买就买的自由
-				<br />
-				<text>梦想储存池</text>
-				<view class="dream-banner-pig">
-					<text>$5000.00</text>
-					<!-- <image src="../../static/images/jinzhu.png" mode=""></image> -->
-				</view>
-			</view>
 			<view class="icon-lyd-l"><image src="../../static/images/wenhao.svg" mode=""></image></view>
 			<view class="icon-lyd-r" @click="toDatum"><image src="../../static/images/shezhi.svg" mode=""></image></view>
 		</view>
@@ -18,17 +9,17 @@
 			<view class="dream-detail-item">
 				1000.00
 				<br />
-				<text>梦想预算(元)</text>
+				<text>总取金额(元)</text>
 			</view>
 			<view class="dream-detail-item">
 				0.00
 				<br />
-				<text>已存金额(元)</text>
+				<text>累计支出(元)</text>
 			</view>
 			<view class="dream-detail-item">
-				暂无收益
+				0.00
 				<br />
-				<text>累计金额(元)</text>
+				<text>累计收益(元)</text>
 			</view>
 		</view>
 		<view class="dream-items">
@@ -145,18 +136,20 @@ export default {
 		};
 	},
 	onLoad() {
+
 		if( !getToken() ){
 			this.isLogin  =  true ;
 			// getHomeTodayPay().then(response =>{
 			// 	console.log(response )
 			// })
+			this.countTime();
 		}
 		else{
 			this.isLogin  = false;
 		}
 	},
 	onShow() {
-		this.countTime();
+		
 	},
 	computed: {
 		...mapState(['userName'])
@@ -168,7 +161,7 @@ export default {
 			});
 		},
 		goMyItem(){
-			if( getToken() ){
+			if( !getToken() ){
 				uni.navigateTo({
 					url: '/pages/myItem/index'
 				});

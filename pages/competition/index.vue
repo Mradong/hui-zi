@@ -7,7 +7,7 @@
 			<!-- 不能为空值，看到做判断 -->
 			<view class="warn" v-if="money == '' ? true : false"></view>
 		</view>
-		<button class="competition-button" type="primary" @click="openCompetition">确认</button>
+		<button class="competition-button dominant-hue-button-bg-red" type="primary" @click="openCompetition">确认</button>
 		<uni-popup ref="Competition" type="dialog">
 			<uni-popup-dialog type="input" title="提示" :content="Competition" :duration="2000" :before-close="true"  @close="close" @confirm="confirm"></uni-popup-dialog>
 		</uni-popup>
