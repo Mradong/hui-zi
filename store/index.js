@@ -15,6 +15,7 @@ const store = new Vuex.Store({ //全局变量定义
 	state: {
 		userName: "11",
 		userLogo: "",
+		userStatus: 0,//0 资料为空 1.资料不完整  2 资料不完整、(手机、真实姓名) 3. 资料完全 
 		userId: '',
 		token: '',
 	},
@@ -24,6 +25,9 @@ const store = new Vuex.Store({ //全局变量定义
 		},
 		SET_USERLOGO: (state, userLogo) => {
 			state.userLogo = userLogo
+		},
+		SET_USERSTATUS: (state, userStatus) => {
+			state.userStatus = userStatus
 		},
 		SET_USERID: (state, userId) => {
 			state.userId = userId
@@ -40,10 +44,13 @@ const store = new Vuex.Store({ //全局变量定义
 		}, data ) {
 			return new Promise(resolve => {
 				codeToToken(data.url,data.code).then(response => {
+					console.log(response.data )
 					let token = response.data.data.token;
+					let userStatus = response.data.data.userStatus;
 					commit('SET_TOKEN', token)
-					commit('SET_USERNAME', "hahah")
+					commit('SET_USERSTATUS', userStatus)
 					setToken(token)
+					console.log( getToken())
 					resolve()
 				}).catch(error => {
 					reject(error)

@@ -20,7 +20,7 @@ uni-page-body {
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   border-radius: 20rpx;
-  background-color: #FEDD12;
+  background-color: #fedd12;
 }
 .login .login-bg image {
   width: 100%;
@@ -47,7 +47,7 @@ uni-page-body {
           transform: translate(-50%);
 }
 .login .login-but .wx_login {
-  background-color: #FFF;
+  background-color: #fff;
   color: #333;
 }
 .login .login-but .button-hover {

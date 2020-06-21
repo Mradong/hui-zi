@@ -144,16 +144,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _auth = __webpack_require__(/*! @/utils/auth */ 24);
-var _user = __webpack_require__(/*! @/api/user.js */ 17); //
-//
-//
-//
-//
-//
-//
-//
-//
-var _default = { data: function data() {return { from: '' };}, methods: { appLoginWx: function appLoginWx() {var _that = this;
+var _user = __webpack_require__(/*! @/api/user.js */ 17);
+var _vuex = __webpack_require__(/*! vuex */ 16);function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
+{
+  data: function data() {
+    return {
+      from: '' };
+
+  },
+  computed: _objectSpread({},
+  (0, _vuex.mapState)(['userStatus'])),
+
+  methods: {
+    appLoginWx: function appLoginWx() {
+      var _that = this;
       uni.getProvider({
         service: 'oauth',
         success: function success(res) {
@@ -173,24 +177,86 @@ var _default = { data: function data() {return { from: '' };}, methods: { appLog
                       code: code }).
 
                     then(function () {
-                      (0, _user.upUserInfo)(info.userInfo).
-                      then(function () {
-                        uni.showToast({
-                          title: '登录成功，返回中...',
-                          icon: 'none',
-                          duration: 1000,
-                          success: function success() {
-                            setTimeout(function () {
-                              uni.navigateTo({
-                                url: "/pages/".concat(_that.from, "/index") });
+                      switch (_that.userStatus) {
+                        case 0:
+                          (0, _user.upUserInfo)({
+                            "nickName": info.userInfo.nickName,
+                            "headUrl": info.userInfo.avatarUrl }).
 
-                            }, 1000);
-                          } });
+                          then(function (res) {
+                            uni.showToast({
+                              title: '登录成功，前往完善资料页面..',
+                              icon: 'none',
+                              duration: 1000,
+                              success: function success() {
+                                setTimeout(function () {
+                                  uni.navigateTo({
+                                    url: "/pages/perfectDatum/index" });
 
-                      }).
-                      catch(function () {
-                        uni.showToast({ title: '获取数据失败，请稍后再试', icon: 'none' });
-                      });
+                                }, 1000);
+                              } });
+
+                          }).
+                          catch(function () {
+                            uni.showToast({ title: '获取数据失败，请稍后再试', icon: 'none' });
+                          });
+                          break;
+                        case 1:
+                          (0, _user.upUserInfo)({
+                            "nickName": info.userInfo.nickName,
+                            "headUrl": info.userInfo.avatarUrl }).
+
+                          then(function (res) {
+                            if (res.statusCode === 200) {
+                              uni.showToast({
+                                title: '登录成功，前往完善资料页面..',
+                                icon: 'none',
+                                duration: 1000,
+                                success: function success() {
+                                  setTimeout(function () {
+                                    uni.navigateTo({
+                                      url: "/pages/perfectDatum/index" });
+
+                                  }, 1000);
+                                } });
+
+                            } else
+                            {
+                              uni.showToast({ title: '登录失败，请稍后再试', icon: 'none' });
+                            }
+                          }).
+                          catch(function () {
+                            uni.showToast({ title: '获取数据失败，请稍后再试', icon: 'none' });
+                          });
+                          break;
+                        case 2:
+                          uni.showToast({
+                            title: '登录成功，前往完善资料页面..',
+                            icon: 'none',
+                            duration: 1000,
+                            success: function success() {
+                              setTimeout(function () {
+                                uni.navigateTo({
+                                  url: "/pages/perfectDatum/index" });
+
+                              }, 1000);
+                            } });
+
+                          break;
+                        default:
+                          uni.showToast({
+                            title: '登录成功，返回中...',
+                            icon: 'none',
+                            duration: 1000,
+                            success: function success() {
+                              setTimeout(function () {
+                                uni.navigateTo({
+                                  url: "/pages/".concat(_that.from, "/index") });
+
+                              }, 1000);
+                            } });}
+
+
                     });
                   },
                   fail: function fail() {

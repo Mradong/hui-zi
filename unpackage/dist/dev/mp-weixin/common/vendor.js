@@ -754,7 +754,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1763,6 +1763,7 @@ var store = new _vuex.default.Store({ //全局变量定义
   state: {
     userName: "11",
     userLogo: "",
+    userStatus: 0, //0 资料为空 1.资料不完整  2 资料不完整、(手机、真实姓名) 3. 资料完全 
     userId: '',
     token: '' },
 
@@ -1772,6 +1773,9 @@ var store = new _vuex.default.Store({ //全局变量定义
     },
     SET_USERLOGO: function SET_USERLOGO(state, userLogo) {
       state.userLogo = userLogo;
+    },
+    SET_USERSTATUS: function SET_USERSTATUS(state, userStatus) {
+      state.userStatus = userStatus;
     },
     SET_USERID: function SET_USERID(state, userId) {
       state.userId = userId;
@@ -1788,10 +1792,13 @@ var store = new _vuex.default.Store({ //全局变量定义
     data) {var commit = _ref.commit;
       return new Promise(function (resolve) {
         (0, _user.codeToToken)(data.url, data.code).then(function (response) {
+          console.log(response.data);
           var token = response.data.data.token;
+          var userStatus = response.data.data.userStatus;
           commit('SET_TOKEN', token);
-          commit('SET_USERNAME', "hahah");
+          commit('SET_USERSTATUS', userStatus);
           (0, _auth.setToken)(token);
+          console.log((0, _auth.getToken)());
           resolve();
         }).catch(function (error) {
           reject(error);
@@ -2779,15 +2786,10 @@ function codeToToken(url, code) {
 
 function upUserInfo(data) {
   var url = "/app/create";
-  var upUserInfo = {
-    "name": "",
-    "nickName": data.nickName,
-    "headUrl": data.avatarUrl,
-    "mobile": "" };
-
+  var initData = data;
   return _request.default.post({
     url: url,
-    data: upUserInfo });
+    data: initData });
 
 
 }
@@ -2801,6 +2803,29 @@ function upUserInfo(data) {
 
 /***/ }),
 
+/***/ 174:
+/*!*********************************************************!*\
+  !*** C:/Users/mi/Desktop/git-huizi/api/perfectDatum.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getMobileVerify = getMobileVerify;var _request = _interopRequireDefault(__webpack_require__(/*! @/utils/request.js */ 18));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+/* 获取手机验证码 */
+function getMobileVerify(data) {
+  var url = "/app/register/sms";
+  var initData = data;
+  return _request.default.post({
+    url: url,
+    data: initData });
+
+
+}
+
+/***/ }),
+
 /***/ 18:
 /*!******************************************************!*\
   !*** C:/Users/mi/Desktop/git-huizi/utils/request.js ***!
@@ -2811,6 +2836,7 @@ function upUserInfo(data) {
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _xmlPackaging = _interopRequireDefault(__webpack_require__(/*! @/components/xml-packaging/xml-packaging.js */ 19));
 var _auth = __webpack_require__(/*! @/utils/auth */ 24);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
 
 var $http = new _xmlPackaging.default({
   // 默认 跟地址
@@ -2837,8 +2863,8 @@ $http;exports.default = _default;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 20));var _MD = _interopRequireDefault(__webpack_require__(/*! ./md5/MD5.js */ 23));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var
-
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 20));var _MD = _interopRequireDefault(__webpack_require__(/*! ./md5/MD5.js */ 23));
+var _auth = __webpack_require__(/*! @/utils/auth */ 24);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var
 
 axios = /*#__PURE__*/function () {
   function axios(obj) {_classCallCheck(this, axios);
@@ -2851,7 +2877,7 @@ axios = /*#__PURE__*/function () {
     //  是否开启 请求拦截
     this.por_Br = obj.promise || true;
     // token
-    this.token = obj.token || '';
+    this.token = (0, _auth.getToken)();
     // 是否开启 解析 jsp 数据格式
     this.dataType = obj.dataType ? '' : 'json',
 
@@ -2922,8 +2948,10 @@ axios = /*#__PURE__*/function () {
 
     // 发送请求
   }, { key: "asiox_beg", value: function asiox_beg(type, ALL_data, claback) {var index = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 1;
+      this.token = (0, _auth.getToken)();
       this.front_loading(ALL_data.por_Br);
       var that = this;
+      console.log(that.token);
       if (index == 1) {
         if (type == "POST") {var
 
@@ -2931,17 +2959,17 @@ axios = /*#__PURE__*/function () {
 
 
           ALL_data.url,data = ALL_data.data,dataType = ALL_data.dataType;
-          console.log(ALL_data);
           uni.request({
             url: url,
             data: data,
             header: {
               'content-type': 'application/x-www-form-urlencoded',
-              'token': this.token },
+              'token': that.token },
 
             method: type,
             dataType: dataType,
             success: function success(res) {
+
               that.finish_Loading(false, res);
               claback(true, res);
             },
@@ -8657,7 +8685,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -8678,14 +8706,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -8761,7 +8789,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));

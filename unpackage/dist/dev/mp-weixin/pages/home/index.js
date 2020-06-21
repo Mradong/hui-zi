@@ -235,38 +235,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var _vuex = __webpack_require__(/*! vuex */ 16);
 
 
@@ -281,22 +249,37 @@ var _home = __webpack_require__(/*! @/api/home.js */ 31);function _objectSpread(
       minute: 0,
       second: 0,
       isLogin: false,
-      isOver: false };
+      isOver: false,
+      totalValue: "0.00",
+      totalInput: "0.00",
+      totalReturn: "0.00" };
 
   },
-  onLoad: function onLoad() {
-    if (!(0, _auth.getToken)()) {
+  onLoad: function onLoad() {var _this = this;
+    if ((0, _auth.getToken)()) {
       this.isLogin = true;
       // getHomeTodayPay().then(response =>{
       // 	console.log(response )
       // })
+      this.countTime();
     } else
     {
       this.isLogin = false;
     }
+    (0, _home.getUserTAC)().then(function (response) {
+      if (response.data.msg === "SUCCESS") {
+        _this.totalValue = response.data.data.totalValue;
+        _this.totalInput = response.data.data.totalInput;
+        _this.totalReturn = response.data.data.totalReturn;
+      } else
+      {
+        uni.showToast({ title: '获取数据失败', icon: 'none' });
+      }
+
+    });
   },
   onShow: function onShow() {
-    this.countTime();
+
   },
   computed: _objectSpread({},
   (0, _vuex.mapState)(['userName'])),

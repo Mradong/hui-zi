@@ -7,17 +7,17 @@
 		</view>
 		<view class="dream-detail">
 			<view class="dream-detail-item">
-				1000.00
+				{{ totalValue }}
 				<br />
 				<text>总取金额(元)</text>
 			</view>
 			<view class="dream-detail-item">
-				0.00
+				{{ totalInput }}
 				<br />
 				<text>累计支出(元)</text>
 			</view>
 			<view class="dream-detail-item">
-				0.00
+				{{ totalReturn }}
 				<br />
 				<text>累计收益(元)</text>
 			</view>
@@ -80,29 +80,6 @@
 								<view class="tf-l" v-if="isOver"><button type="default" class="tf-button dominant-hue-button-bg-yell">取会结果</button></view>
 							</view>
 						</view>
-						<view class="custom-area-item">
-							<view class="tc thead">
-								<view class="tc-r">投标已结束</view>
-							</view>
-							<view class="td">
-								<view class="td-r">
-									<view class="shouyi">100.00</view>
-									<view class="">本期缴费</view>
-								</view>
-								<view class="td-l">
-									<view class="td-l-tile">李二狗500会</view>
-									<view class="">每月固定会费：500</view>
-									<view class="">第23期</view>
-								</view>
-							</view>
-							<view class="tf">
-								<view class="tf-r">
-									{{ userName }}
-									本期投标已经结束,去看一下>>
-								</view>
-								<view class="tf-l"><button type="default" class="tf-button dominant-hue-button-bg-yell" @click="toRanking">取会结果</button></view>
-							</view>
-						</view>
 					</view>
 				</view>
 			</view>
@@ -123,7 +100,7 @@ import uniCountdown from '@/components/uni-countdown/uni-countdown.vue';
 import uniPopup from '@/components/uni-popup/uni-popup.vue'
 import uniPopupDialog from '@/components/uni-popup/uni-popup-dialog.vue'
 import { getToken } from '@/utils/auth'
-import { getHomeTodayPay } from '@/api/home.js'
+import { getHomeTodayPay , getUserTAC} from '@/api/home.js'
 export default {
 	data() {
 		return {
@@ -133,11 +110,13 @@ export default {
 			second: 0,
 			isLogin:false,
 			isOver:false,
+			totalValue:"0.00",
+			totalInput:"0.00",
+			totalReturn:"0.00"
 		};
 	},
 	onLoad() {
-
-		if( !getToken() ){
+		if( getToken() ){
 			this.isLogin  =  true ;
 			// getHomeTodayPay().then(response =>{
 			// 	console.log(response )
@@ -147,9 +126,20 @@ export default {
 		else{
 			this.isLogin  = false;
 		}
+		getUserTAC().then(response =>{
+			if( response.data.msg === "SUCCESS" ){
+				this.totalValue = response.data.data.totalValue;
+				this.totalInput = response.data.data.totalInput;
+				this.totalReturn = response.data.data.totalReturn;
+			}
+			else{
+				uni.showToast({ title: '获取数据失败', icon: 'none' });
+			}
+
+		})
 	},
 	onShow() {
-		
+
 	},
 	computed: {
 		...mapState(['userName'])
@@ -161,7 +151,7 @@ export default {
 			});
 		},
 		goMyItem(){
-			if( !getToken() ){
+			if( getToken() ){
 				uni.navigateTo({
 					url: '/pages/myItem/index'
 				});

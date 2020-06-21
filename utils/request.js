@@ -1,6 +1,7 @@
 import axios from '@/components/xml-packaging/xml-packaging.js'   
 import { getToken } from '@/utils/auth'
 
+
 var $http = new axios({
     // 默认 跟地址
     baseUrl:'http://192.168.2.157:9002',

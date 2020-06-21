@@ -1,5 +1,5 @@
 import md5 from './md5/MD5.js'
-
+import { getToken } from '@/utils/auth'
 
 export default class axios {
 	constructor(obj) {
@@ -12,7 +12,7 @@ export default class axios {
 		//  是否开启 请求拦截
 		this.por_Br = obj.promise || true;
 		// token
-		this.token = obj.token || ''
+		this.token = getToken();
 		// 是否开启 解析 jsp 数据格式
 		this.dataType = obj.dataType ? '' : 'json',
 		
@@ -83,8 +83,10 @@ export default class axios {
 	}
 	// 发送请求
 	asiox_beg(type, ALL_data, claback, index = 1) {
+		this.token = getToken();
 		this.front_loading(ALL_data.por_Br)
 		var that = this;
+		console.log( that.token )
 		if (index == 1) {
 			if(type =="POST" ){
 				let {
@@ -92,17 +94,17 @@ export default class axios {
 					data,
 					dataType
 				} = ALL_data;
-				console.log(ALL_data);
 				uni.request({
 					url,
 					data,
 					header: {
 						'content-type': 'application/x-www-form-urlencoded', 
-						'token': this.token
+						'token': that.token
 					},
 					method: type,
 					dataType,
 					success(res) {
+						
 						that.finish_Loading(false, res)
 						claback(true, res)
 					},

@@ -136,7 +136,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uniCountdown = function uniCountdown() {return __webpack_require__.e(/*! import() | components/uni-countdown/uni-countdown */ "components/uni-countdown/uni-countdown").then(__webpack_require__.bind(null, /*! @/components/uni-countdown/uni-countdown.vue */ 105));};var moveVerify = function moveVerify() {return __webpack_require__.e(/*! import() | components/helang-moveVerify/helang-moveVerify */ "components/helang-moveVerify/helang-moveVerify").then(__webpack_require__.bind(null, /*! @/components/helang-moveVerify/helang-moveVerify.vue */ 142));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -183,6 +183,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var _perfectDatum = __webpack_require__(/*! @/api/perfectDatum.js */ 174);
+var _user = __webpack_require__(/*! @/api/user.js */ 17);var uniCountdown = function uniCountdown() {return __webpack_require__.e(/*! import() | components/uni-countdown/uni-countdown */ "components/uni-countdown/uni-countdown").then(__webpack_require__.bind(null, /*! @/components/uni-countdown/uni-countdown.vue */ 105));};var moveVerify = function moveVerify() {return __webpack_require__.e(/*! import() | components/helang-moveVerify/helang-moveVerify */ "components/helang-moveVerify/helang-moveVerify").then(__webpack_require__.bind(null, /*! @/components/helang-moveVerify/helang-moveVerify.vue */ 142));};var _default =
 {
   data: function data() {
     return {
@@ -200,7 +202,7 @@ __webpack_require__.r(__webpack_exports__);
           msg: "手机号码不正确" },
 
         verify: {
-          rule: /^[A-Za-z0-9]{4}$/,
+          rule: /^[A-Za-z0-9]{6}$/,
           msg: "验证码不正确" } },
 
 
@@ -230,6 +232,15 @@ __webpack_require__.r(__webpack_exports__);
       this.isSend = true;
     },
     sendVerify: function sendVerify() {
+      (0, _perfectDatum.getMobileVerify)({ "mobile": this.phone }).
+      then(function (response) {
+        if (response.data.msg == "SUCCESS") {
+          uni.showToast({ title: '发送成功,请查收', icon: 'none' });
+        }
+      }).
+      catch(function () {
+        uni.showToast({ title: '发送失败,请稍后再试', icon: 'none' });
+      });
       this.isSend = false;
     },
     //
@@ -238,13 +249,36 @@ __webpack_require__.r(__webpack_exports__);
       if (!this.validate("phone")) return;
       if (!this.validate("verify")) return;
       uni.showLoading({
-        title: "提交中" });
+        title: "提交数据中" });
 
-      setTimeout(function () {
-        //隐藏登录状态
-        uni.hideLoading();
-        console.log("111 ");
-      }, 2000);
+
+      (0, _user.upUserInfo)({
+        "name": this.username,
+        "mobile": this.phone,
+        "userCheckCode": this.verify }).
+
+      then(function (res) {
+        if (res.statusCode === 200) {
+          uni.showToast({
+            title: '提交成功',
+            icon: 'none',
+            duration: 1000,
+            success: function success() {
+              setTimeout(function () {
+                uni.navigateTo({
+                  url: "/pages/home/index" });
+
+              }, 2000);
+            } });
+
+        } else
+        {
+          uni.showToast({ title: '提交数据失败，请重试', icon: 'none' });
+        }
+      }).
+      catch(function () {
+        uni.showToast({ title: '提交数据失败，请重试', icon: 'none' });
+      });
     },
     //判断验证是否符合要求
     validate: function validate(key) {

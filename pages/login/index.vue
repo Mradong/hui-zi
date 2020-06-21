@@ -10,11 +10,15 @@
 <script>
 import { getToken } from '@/utils/auth';
 import { upUserInfo } from '@/api/user.js';
+import { mapState } from 'vuex';
 export default {
 	data() {
 		return {
 			from: ''
 		};
+	},
+	computed: {
+		...mapState(['userStatus'])
 	},
 	methods: {
 		appLoginWx() {
@@ -30,7 +34,7 @@ export default {
 									provider: 'weixin',
 									success: info => {
 										//这里请求接口
-										console.log( info )
+										console.log(info )
 										let code = res.code;
 										_that.$store
 											.dispatch('codeToToken', {
@@ -38,8 +42,73 @@ export default {
 												code: code
 											})
 											.then(() => {
-												upUserInfo( info.userInfo )
-													.then(() => {
+												switch (_that.userStatus) {
+													case 0:
+														upUserInfo({
+															"nickName": info.userInfo.nickName,
+															"headUrl": info.userInfo.avatarUrl,
+														})
+															.then(res => {
+																uni.showToast({
+																	title: '登录成功，前往完善资料页面..',
+																	icon: 'none',
+																	duration: 1000,
+																	success: function() {
+																		setTimeout(function() {
+																			uni.navigateTo({
+																				url: `/pages/perfectDatum/index`
+																			});
+																		}, 1000);
+																	}
+																});
+															})
+															.catch(() => {
+																uni.showToast({ title: '获取数据失败，请稍后再试', icon: 'none' });
+															});
+														break;
+													case 1:
+														upUserInfo({
+															"nickName": info.userInfo.nickName,
+															"headUrl": info.userInfo.avatarUrl,
+														})
+															.then(res => {
+																if ( res.statusCode === 200){
+																	uni.showToast({
+																		title: '登录成功，前往完善资料页面..',
+																		icon: 'none',
+																		duration: 1000,
+																		success: function() {
+																			setTimeout(function() {
+																				uni.navigateTo({
+																					url: `/pages/perfectDatum/index`
+																				});
+																			}, 1000);
+																		}
+																	});
+																}
+																else{
+																	uni.showToast({ title: '登录失败，请稍后再试', icon: 'none' });
+																}
+															})
+															.catch(() => {
+																uni.showToast({ title: '获取数据失败，请稍后再试', icon: 'none' });
+															});
+														break;
+													case 2:
+														uni.showToast({
+															title: '登录成功，前往完善资料页面..',
+															icon: 'none',
+															duration: 1000,
+															success: function() {
+																setTimeout(function() {
+																	uni.navigateTo({
+																		url: `/pages/perfectDatum/index`
+																	});
+																}, 1000);
+															}
+														});
+														break;
+													default:
 														uni.showToast({
 															title: '登录成功，返回中...',
 															icon: 'none',
@@ -52,10 +121,7 @@ export default {
 																}, 1000);
 															}
 														});
-													})
-													.catch(() => {
-														uni.showToast({ title: '获取数据失败，请稍后再试', icon: 'none' });
-													});
+												}
 											});
 									},
 									fail: () => {
@@ -96,7 +162,7 @@ uni-page-body {
 	overflow: hidden;
 	.login-bg {
 		width: 250upx;
-		height:250upx;
+		height: 250upx;
 		overflow: hidden;
 		position: absolute;
 		top: 30%;
@@ -104,7 +170,7 @@ uni-page-body {
 		z-index: 99;
 		transform: translate(-50%, -50%);
 		border-radius: 20upx;
-		background-color: #FEDD12;
+		background-color: #fedd12;
 		image {
 			width: 100%;
 			height: 100%;
@@ -124,11 +190,11 @@ uni-page-body {
 	.login-but {
 		position: absolute;
 		width: 80%;
-		top:60%;
+		top: 60%;
 		left: 50%;
 		transform: translate(-50%);
 		.wx_login {
-			background-color: #FFF;
+			background-color: #fff;
 			color: #333;
 		}
 		.button-hover {

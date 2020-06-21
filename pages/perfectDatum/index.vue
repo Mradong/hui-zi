@@ -17,7 +17,7 @@
 			<input type="number" v-model="phone" placeholder="手机号" class="text-style" />
 			<view><move-verify @result="verifyResult" ref="verifyElement"></move-verify></view>
 			<view class="verify" v-if="isVerify">
-				<input type="number" v-model="verify" placeholder="验证码" class="text-style ipt-default-current" maxlength="4" />
+				<input type="number" v-model="verify" placeholder="验证码" class="text-style ipt-default-current" maxlength="6" />
 				<button type="default" class="sms-cd-btn" id="sms-send-cd-btn" :disabled="!isSend" @click="sendVerify">
 					<text v-if="isSend">{{ sendText }}</text>
 					<uni-countdown
@@ -28,7 +28,7 @@
 						:show-day="false"
 						:hour="0"
 						:minute="0"
-						:second="9"
+						:second="59"
 						:showPer="false"
 						:showColon="false"
 						@timeup="isOver"
@@ -45,6 +45,8 @@
 <script>
 import uniCountdown from '@/components/uni-countdown/uni-countdown.vue';
 import moveVerify from '@/components/helang-moveVerify/helang-moveVerify.vue';
+import { getMobileVerify } from '@/api/perfectDatum.js'
+import { upUserInfo } from '@/api/user.js';
 export default {
 	data() {
 		return {
@@ -62,7 +64,7 @@ export default {
 					msg:"手机号码不正确"
 				},
 				verify:{
-					rule:/^[A-Za-z0-9]{4}$/,
+					rule:/^[A-Za-z0-9]{6}$/,
 					msg:"验证码不正确"
 				},
 			},
@@ -92,6 +94,15 @@ export default {
 			this.isSend = true;
 		},
 		sendVerify() {
+			getMobileVerify( {"mobile":this.phone} )
+			.then(response =>{
+				if( response.data.msg == "SUCCESS" ){
+					uni.showToast({ title: '发送成功,请查收', icon: 'none' });
+				}
+			})
+			.catch(() => {
+				uni.showToast({ title: '发送失败,请稍后再试', icon: 'none' });
+			});
 			this.isSend = false;
 		},
 		//
@@ -100,13 +111,36 @@ export default {
 			if(!this.validate("phone"))  return;
 			if(!this.validate("verify"))  return;
 			uni.showLoading({
-				title:"提交中"
+				title:"提交数据中"
 			});
-			setTimeout(()=>{
-				//隐藏登录状态
-				uni.hideLoading();
-				console.log( "111 ")
-			},2000)
+			
+			upUserInfo({
+				"name": this.username,
+				"mobile": this.phone,
+				"userCheckCode": this.verify,
+			})
+				.then(res => {
+					if ( res.statusCode === 200){
+						uni.showToast({
+							title: '提交成功',
+							icon: 'none',
+							duration: 1000,
+							success: function() {
+								setTimeout(function() {
+									uni.navigateTo({
+										url: `/pages/home/index`
+									});
+								}, 2000);
+							}
+						});
+					}
+					else{
+						uni.showToast({ title: '提交数据失败，请重试', icon: 'none' });
+					}
+				})
+				.catch(() => {
+					uni.showToast({ title: '提交数据失败，请重试', icon: 'none' });
+				});
 		},
 		//判断验证是否符合要求
 		validate(key){

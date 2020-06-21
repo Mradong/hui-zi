@@ -14,15 +14,10 @@ export function codeToToken(url, code) {
 
 export function upUserInfo(data) {
 	let url = "/app/create"
-	let upUserInfo = {
-		"name": "",
-		"nickName": data.nickName,
-		"headUrl": data.avatarUrl,
-		"mobile": "",
-	}
+	let initData = data ;
 	return $http.post({
 		url,
-		data: upUserInfo
+		data: initData
 	});
 
 }
