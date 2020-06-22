@@ -17,7 +17,7 @@ _vue.default.config.productionTip = false;
 
 
 //全局组件
-var zhouWeiNavBar = function zhouWeiNavBar() {return __webpack_require__.e(/*! import() | components/zhouWei-navBar/index */ "components/zhouWei-navBar/index").then(__webpack_require__.bind(null, /*! @/components/zhouWei-navBar */ 98));};
+var zhouWeiNavBar = function zhouWeiNavBar() {return __webpack_require__.e(/*! import() | components/zhouWei-navBar/index */ "components/zhouWei-navBar/index").then(__webpack_require__.bind(null, /*! @/components/zhouWei-navBar */ 99));};
 _vue.default.component("nav-bar", zhouWeiNavBar);
 
 

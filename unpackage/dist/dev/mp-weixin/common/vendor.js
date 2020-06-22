@@ -1551,7 +1551,7 @@ uni$1;exports.default = _default;
 
 /***/ }),
 
-/***/ 117:
+/***/ 118:
 /*!*******************************************************************!*\
   !*** C:/Users/mi/Desktop/git-huizi/components/uni-popup/popup.js ***!
   \*******************************************************************/
@@ -1559,7 +1559,7 @@ uni$1;exports.default = _default;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _message = _interopRequireDefault(__webpack_require__(/*! ./message.js */ 118));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _message = _interopRequireDefault(__webpack_require__(/*! ./message.js */ 119));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 // 定义 type 类型:弹出类型：top/bottom/center
 var config = {
   // 顶部弹出
@@ -1586,7 +1586,7 @@ var config = {
 
 /***/ }),
 
-/***/ 118:
+/***/ 119:
 /*!*********************************************************************!*\
   !*** C:/Users/mi/Desktop/git-huizi/components/uni-popup/message.js ***!
   \*********************************************************************/
@@ -2800,29 +2800,6 @@ function upUserInfo(data) {
 //   //   method: 'post'
 //   // })
 // }
-
-/***/ }),
-
-/***/ 174:
-/*!*********************************************************!*\
-  !*** C:/Users/mi/Desktop/git-huizi/api/perfectDatum.js ***!
-  \*********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getMobileVerify = getMobileVerify;var _request = _interopRequireDefault(__webpack_require__(/*! @/utils/request.js */ 18));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-
-/* 获取手机验证码 */
-function getMobileVerify(data) {
-  var url = "/app/register/sms";
-  var initData = data;
-  return _request.default.post({
-    url: url,
-    data: initData });
-
-
-}
 
 /***/ }),
 
@@ -11193,6 +11170,29 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "appid": "" };exports.default = _default;
+
+/***/ }),
+
+/***/ 96:
+/*!*********************************************************!*\
+  !*** C:/Users/mi/Desktop/git-huizi/api/perfectDatum.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getMobileVerify = getMobileVerify;var _request = _interopRequireDefault(__webpack_require__(/*! @/utils/request.js */ 18));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+/* 获取手机验证码 */
+function getMobileVerify(data) {
+  var url = "/app/register/sms";
+  var initData = data;
+  return _request.default.post({
+    url: url,
+    data: initData });
+
+
+}
 
 /***/ })
 

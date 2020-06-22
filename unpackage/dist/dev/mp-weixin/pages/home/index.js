@@ -97,9 +97,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   "uni-countdown": () =>
-    __webpack_require__.e(/*! import() | components/uni-countdown/uni-countdown */ "components/uni-countdown/uni-countdown").then(__webpack_require__.bind(null, /*! @/components/uni-countdown/uni-countdown.vue */ 105)),
+    __webpack_require__.e(/*! import() | components/uni-countdown/uni-countdown */ "components/uni-countdown/uni-countdown").then(__webpack_require__.bind(null, /*! @/components/uni-countdown/uni-countdown.vue */ 106)),
   "uni-popup": () =>
-    Promise.all(/*! import() | components/uni-popup/uni-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-popup/uni-popup")]).then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 112))
+    Promise.all(/*! import() | components/uni-popup/uni-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-popup/uni-popup")]).then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 113))
 }
 var render = function() {
   var _vm = this
@@ -240,7 +240,7 @@ var _vuex = __webpack_require__(/*! vuex */ 16);
 
 
 var _auth = __webpack_require__(/*! @/utils/auth */ 24);
-var _home = __webpack_require__(/*! @/api/home.js */ 31);function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var uniCountdown = function uniCountdown() {return __webpack_require__.e(/*! import() | components/uni-countdown/uni-countdown */ "components/uni-countdown/uni-countdown").then(__webpack_require__.bind(null, /*! @/components/uni-countdown/uni-countdown.vue */ 105));};var uniPopup = function uniPopup() {return Promise.all(/*! import() | components/uni-popup/uni-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-popup/uni-popup")]).then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 112));};var uniPopupDialog = function uniPopupDialog() {return __webpack_require__.e(/*! import() | components/uni-popup/uni-popup-dialog */ "components/uni-popup/uni-popup-dialog").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup-dialog.vue */ 121));};var _default =
+var _home = __webpack_require__(/*! @/api/home.js */ 31);function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var uniCountdown = function uniCountdown() {return __webpack_require__.e(/*! import() | components/uni-countdown/uni-countdown */ "components/uni-countdown/uni-countdown").then(__webpack_require__.bind(null, /*! @/components/uni-countdown/uni-countdown.vue */ 106));};var uniPopup = function uniPopup() {return Promise.all(/*! import() | components/uni-popup/uni-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-popup/uni-popup")]).then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 113));};var uniPopupDialog = function uniPopupDialog() {return __webpack_require__.e(/*! import() | components/uni-popup/uni-popup-dialog */ "components/uni-popup/uni-popup-dialog").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup-dialog.vue */ 122));};var _default =
 {
   data: function data() {
     return {
@@ -256,27 +256,27 @@ var _home = __webpack_require__(/*! @/api/home.js */ 31);function _objectSpread(
 
   },
   onLoad: function onLoad() {var _this = this;
-    if ((0, _auth.getToken)()) {
+    if (!(0, _auth.getToken)()) {
       this.isLogin = true;
       // getHomeTodayPay().then(response =>{
       // 	console.log(response )
       // })
       this.countTime();
+      (0, _home.getUserTAC)().then(function (response) {
+        if (response.data.msg === "SUCCESS") {
+          _this.totalValue = response.data.data.totalValue;
+          _this.totalInput = response.data.data.totalInput;
+          _this.totalReturn = response.data.data.totalReturn;
+        } else
+        {
+          uni.showToast({ title: '获取数据失败', icon: 'none' });
+        }
+
+      });
     } else
     {
       this.isLogin = false;
     }
-    (0, _home.getUserTAC)().then(function (response) {
-      if (response.data.msg === "SUCCESS") {
-        _this.totalValue = response.data.data.totalValue;
-        _this.totalInput = response.data.data.totalInput;
-        _this.totalReturn = response.data.data.totalReturn;
-      } else
-      {
-        uni.showToast({ title: '获取数据失败', icon: 'none' });
-      }
-
-    });
   },
   onShow: function onShow() {
 
@@ -291,7 +291,7 @@ var _home = __webpack_require__(/*! @/api/home.js */ 31);function _objectSpread(
 
     },
     goMyItem: function goMyItem() {
-      if ((0, _auth.getToken)()) {
+      if (!(0, _auth.getToken)()) {
         uni.navigateTo({
           url: '/pages/myItem/index' });
 
@@ -323,7 +323,7 @@ var _home = __webpack_require__(/*! @/api/home.js */ 31);function _objectSpread(
       var date = new Date();
       var now = date.getTime();
       //设置截止时间
-      var str = date.getFullYear() + '/' + (Number(date.getMonth()) + 1) + '/' + date.getDate() + ' 24:00:00';
+      var str = date.getFullYear() + '/' + (Number(date.getMonth()) + 1) + '/' + date.getDate() + ' 22:00:00';
       var endDate = new Date(str);
       var end = endDate.getTime();
       //时间差
@@ -334,7 +334,7 @@ var _home = __webpack_require__(/*! @/api/home.js */ 31);function _objectSpread(
         this.minute = Math.floor(leftTime / 1000 / 60 % 60);
         this.second = Math.floor(leftTime / 1000 % 60);
       }
-      if (date.getHours() >= 24) {
+      if (date.getHours() >= 22) {
         this.isOver = true;
       }
     },

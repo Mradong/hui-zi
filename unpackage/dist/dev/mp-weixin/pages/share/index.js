@@ -97,7 +97,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   "uni-popup": () =>
-    Promise.all(/*! import() | components/uni-popup/uni-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-popup/uni-popup")]).then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 112))
+    Promise.all(/*! import() | components/uni-popup/uni-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-popup/uni-popup")]).then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 113))
 }
 var render = function() {
   var _vm = this
@@ -184,23 +184,65 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _auth = __webpack_require__(/*! @/utils/auth */ 24);var uniPopup = function uniPopup() {return Promise.all(/*! import() | components/uni-popup/uni-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-popup/uni-popup")]).then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 112));};var uniPopupDialog = function uniPopupDialog() {return __webpack_require__.e(/*! import() | components/uni-popup/uni-popup-dialog */ "components/uni-popup/uni-popup-dialog").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup-dialog.vue */ 121));};var _default =
+
+
+
+
+
+
+
+
+
+
+
+var _auth = __webpack_require__(/*! @/utils/auth */ 24);var uniPopup = function uniPopup() {return Promise.all(/*! import() | components/uni-popup/uni-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-popup/uni-popup")]).then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 113));};var uniPopupDialog = function uniPopupDialog() {return __webpack_require__.e(/*! import() | components/uni-popup/uni-popup-dialog */ "components/uni-popup/uni-popup-dialog").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup-dialog.vue */ 122));};var _default =
 {
   data: function data() {
     return {
-      buttonText: "冲吧,路飞~",
+      buttonText: '分享给好友',
       isShow: true,
       resultData: {},
       isVerify: false };
 
   },
   onLoad: function onLoad() {
-    if ((0, _auth.getToken)()) {
+    if (!(0, _auth.getToken)()) {
       //=> 获取用户信息,判断该项目是否已经参加
-    } else
-    {
-      this.buttonText = "qu登录~";
+    } else {
+      this.buttonText = 'qu登录~';
     }
+  },
+  onShareAppMessage: function onShareAppMessage(optiom) {
+    if (optiom.from === 'button') {
+      // 来自页面内转发按钮
+      return {
+        title: "会子簿",
+        desc: "专门记录会子的小程序",
+        imageUrl: "../../static/images/cyf.jpg",
+        path: "/pages/home/index?id=" + 123,
+        success: function success(res) {
+          // 转发成功
+          console.log("转发成功:" + JSON.stringify(res));
+        },
+        fail: function fail(res) {
+          // 转发失败
+          console.log("转发失败:" + JSON.stringify(res));
+        } };
+
+    }
+    return {
+      title: "会子簿",
+      desc: "专门记录会子的小程序",
+      imageUrl: "../../static/images/cyf.jpg",
+      path: "/pages/home/index?id=" + 123,
+      success: function success(res) {
+        // 转发成功
+        console.log("转发成功:" + JSON.stringify(res));
+      },
+      fail: function fail(res) {
+        // 转发失败
+        console.log("转发失败:" + JSON.stringify(res));
+      } };
 
   },
   components: {
@@ -234,13 +276,12 @@ var _auth = __webpack_require__(/*! @/utils/auth */ 24);var uniPopup = function 
       this.$refs.popup.open();
     },
     join: function join() {
-      console.log("我加入会子了");
+      console.log('我加入会子了');
     } },
 
   watch: {
     buttonText: function buttonText() {
-      this.isShow = false,
-      this.$refs.popup.open();
+      this.isShow = false, this.$refs.popup.open();
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

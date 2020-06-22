@@ -116,27 +116,27 @@ export default {
 		};
 	},
 	onLoad() {
-		if( getToken() ){
+		if( !getToken() ){
 			this.isLogin  =  true ;
 			// getHomeTodayPay().then(response =>{
 			// 	console.log(response )
 			// })
 			this.countTime();
+			getUserTAC().then(response =>{
+				if( response.data.msg === "SUCCESS" ){
+					this.totalValue = response.data.data.totalValue;
+					this.totalInput = response.data.data.totalInput;
+					this.totalReturn = response.data.data.totalReturn;
+				}
+				else{
+					uni.showToast({ title: '获取数据失败', icon: 'none' });
+				}
+			
+			})
 		}
 		else{
 			this.isLogin  = false;
 		}
-		getUserTAC().then(response =>{
-			if( response.data.msg === "SUCCESS" ){
-				this.totalValue = response.data.data.totalValue;
-				this.totalInput = response.data.data.totalInput;
-				this.totalReturn = response.data.data.totalReturn;
-			}
-			else{
-				uni.showToast({ title: '获取数据失败', icon: 'none' });
-			}
-
-		})
 	},
 	onShow() {
 
@@ -151,7 +151,7 @@ export default {
 			});
 		},
 		goMyItem(){
-			if( getToken() ){
+			if( !getToken() ){
 				uni.navigateTo({
 					url: '/pages/myItem/index'
 				});
@@ -183,7 +183,7 @@ export default {
 			let date = new Date();
 			let now = date.getTime();
 			//设置截止时间
-			let str = date.getFullYear() + '/' + (Number(date.getMonth()) + 1) + '/' + date.getDate() + ' 24:00:00';
+			let str = date.getFullYear() + '/' + (Number(date.getMonth()) + 1) + '/' + date.getDate() + ' 22:00:00';
 			let endDate = new Date(str);
 			let end = endDate.getTime();
 			//时间差
@@ -194,7 +194,7 @@ export default {
 				this.minute = Math.floor((leftTime / 1000 / 60) % 60);
 				this.second = Math.floor((leftTime / 1000) % 60);
 			}
-			if( date.getHours() >= 24){
+			if( date.getHours() >= 22){
 				this.isOver = true ;
 			}
 		},
