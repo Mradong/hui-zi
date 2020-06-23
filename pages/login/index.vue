@@ -39,7 +39,8 @@ export default {
 										_that.$store
 											.dispatch('codeToToken', {
 												url: '/app/login',
-												code: code
+												code: code,
+												userInfo:info.userInfo
 											})
 											.then(() => {
 												switch (_that.userStatus) {

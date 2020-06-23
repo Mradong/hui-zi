@@ -1761,8 +1761,8 @@ _vue.default.use(_vuex.default);
 
 var store = new _vuex.default.Store({ //全局变量定义
   state: {
-    userName: "11",
-    userLogo: "",
+    userName: "游客",
+    userLogo: "../../static/images/cyf.jpg",
     userStatus: 0, //0 资料为空 1.资料不完整  2 资料不完整、(手机、真实姓名) 3. 资料完全 
     userId: '',
     token: '' },
@@ -1792,13 +1792,17 @@ var store = new _vuex.default.Store({ //全局变量定义
     data) {var commit = _ref.commit;
       return new Promise(function (resolve) {
         (0, _user.codeToToken)(data.url, data.code).then(function (response) {
-          console.log(response.data);
-          var token = response.data.data.token;
-          var userStatus = response.data.data.userStatus;
+          console.log(response.data);var _response$data$data =
+
+
+
+          response.data.data,token = _response$data$data.token,userStatus = _response$data$data.userStatus;
+
           commit('SET_TOKEN', token);
+          commit('SET_USERNAME', data.userInfo.nickName);
+          commit('SET_USERLOGO', data.userInfo.avatarUrl);
           commit('SET_USERSTATUS', userStatus);
           (0, _auth.setToken)(token);
-          console.log((0, _auth.getToken)());
           resolve();
         }).catch(function (error) {
           reject(error);
@@ -2803,6 +2807,66 @@ function upUserInfo(data) {
 
 /***/ }),
 
+/***/ 175:
+/*!***************************************************!*\
+  !*** C:/Users/mi/Desktop/git-huizi/api/huizis.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getProjects = getProjects;exports.getUserInfo = getUserInfo;var _request = _interopRequireDefault(__webpack_require__(/*! @/utils/request.js */ 18));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+
+function getProjects() {
+  var url = "/orange/projects";
+  return _request.default.post({
+    url: url });
+
+}
+
+function getUserInfo() {
+  var url = "/orange/getUserInfo";
+  return _request.default.post({
+    url: url });
+
+}
+
+/***/ }),
+
+/***/ 176:
+/*!**************************************************!*\
+  !*** C:/Users/mi/Desktop/git-huizi/api/share.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getJoinStatus = getJoinStatus;exports.getProjectDetail = getProjectDetail;var _request = _interopRequireDefault(__webpack_require__(/*! @/utils/request.js */ 18));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+
+function getJoinStatus(data) {
+  var url = "/orange/user/project";
+  var initData = data;
+  return _request.default.post({
+    url: url,
+    data: initData });
+
+
+}
+
+function getProjectDetail(data) {
+  var url = "/orange/project";
+  var initData = data;
+  return _request.default.post({
+    url: url,
+    data: initData });
+
+
+}
+
+/***/ }),
+
 /***/ 18:
 /*!******************************************************!*\
   !*** C:/Users/mi/Desktop/git-huizi/utils/request.js ***!
@@ -2911,7 +2975,6 @@ axios = /*#__PURE__*/function () {
                   this.url_dispose(obj, 2));case 2:Alldata = _context4.sent;return _context4.abrupt("return",
 
                 new Promise(function (resolve, reject) {
-                  console.log(Alldata);
                   _this4.asiox_beg('', Alldata, function (state, data) {
                     if (state) {
                       // console.log(state && data.data != '',state , data.data == '');
@@ -2928,7 +2991,6 @@ axios = /*#__PURE__*/function () {
       this.token = (0, _auth.getToken)();
       this.front_loading(ALL_data.por_Br);
       var that = this;
-      console.log(that.token);
       if (index == 1) {
         if (type == "POST") {var
 
@@ -2963,7 +3025,6 @@ axios = /*#__PURE__*/function () {
 
 
           ALL_data.url,_data = ALL_data.data,header = ALL_data.header,_dataType = ALL_data.dataType;
-          console.log(ALL_data);
           uni.request({
             url: _url,
             data: _data,
@@ -3094,7 +3155,6 @@ axios = /*#__PURE__*/function () {
           }
 
         }
-        console.log(str_data);
         md5_mi = _MD.default.hax_md5(str_data);
         newObj['sign'] = md5_mi.toLocaleLowerCase();
         ra(newObj);
@@ -10163,7 +10223,7 @@ function Utf8Encode(string) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.getToken = getToken;exports.setToken = setToken;exports.removeToken = removeToken;function getToken() {
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.getToken = getToken;exports.setToken = setToken;exports.removeToken = removeToken;exports.getRemind = getRemind;exports.setRemind = setRemind;exports.removeRemind = removeRemind;function getToken() {
   return uni.getStorageSync('Admin-Token');
 }
 
@@ -10173,6 +10233,18 @@ function setToken(token) {
 
 function removeToken() {
   return uni.removeStorageSync('Admin-Token');
+}
+
+function getRemind() {
+  return uni.getStorageSync('Today-Remind');
+}
+
+function setRemind(remind) {
+  return uni.setStorageSync("Today-Remind", remind);
+}
+
+function removeRemind() {
+  return uni.removeStorageSync('Today-Remind');
 }
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

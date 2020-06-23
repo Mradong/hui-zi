@@ -95,12 +95,12 @@
 	</view>
 </template>
 <script>
-import {mapState} from "vuex"
 import uniCountdown from '@/components/uni-countdown/uni-countdown.vue';
 import uniPopup from '@/components/uni-popup/uni-popup.vue'
 import uniPopupDialog from '@/components/uni-popup/uni-popup-dialog.vue'
 import { getToken } from '@/utils/auth'
 import { getHomeTodayPay , getUserTAC} from '@/api/home.js'
+
 export default {
 	data() {
 		return {
@@ -116,7 +116,7 @@ export default {
 		};
 	},
 	onLoad() {
-		if( !getToken() ){
+		if( getToken() ){
 			this.isLogin  =  true ;
 			// getHomeTodayPay().then(response =>{
 			// 	console.log(response )
@@ -138,12 +138,6 @@ export default {
 			this.isLogin  = false;
 		}
 	},
-	onShow() {
-
-	},
-	computed: {
-		...mapState(['userName'])
-	},
 	methods: {
 		goHuiZis() {
 			uni.navigateTo({
@@ -151,7 +145,7 @@ export default {
 			});
 		},
 		goMyItem(){
-			if( !getToken() ){
+			if( getToken() ){
 				uni.navigateTo({
 					url: '/pages/myItem/index'
 				});

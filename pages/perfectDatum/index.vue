@@ -1,14 +1,21 @@
 <template>
 	<view class="per-datum dominant-hue-bg">
 		<view class="per-datum-nav">
-			<nav-bar ref="navBar" backState="1000" :home="false" transparentFixedFontColor="#FFF" type="transparentFixed" title="完善个人资料">
+			<nav-bar
+				ref="navBar"
+				backState="1000"
+				:home="false"
+				transparentFixedFontColor="#FFF"
+				type="transparentFixed"
+				:title="userStatus == 3 ? '修改个人资料' : '完善个人资料'"
+			>
 				<!-- <view class="icon_setUp" slot="transparentFixedRight">设置</view> -->
 			</nav-bar>
 		</view>
 		<view class="per-datum-logo">
 			<view class="per-datum-logo-msg">
-				<image src="../../static/images/cyf.jpg" mode=""></image>
-				<text>陈一发儿</text>
+				<image :src="userLogo" mode=""></image>
+				<text>{{ userName }}</text>
 			</view>
 		</view>
 		<view class="clear"></view>
@@ -45,8 +52,9 @@
 <script>
 import uniCountdown from '@/components/uni-countdown/uni-countdown.vue';
 import moveVerify from '@/components/helang-moveVerify/helang-moveVerify.vue';
-import { getMobileVerify } from '@/api/perfectDatum.js'
+import { getMobileVerify } from '@/api/perfectDatum.js';
 import { upUserInfo } from '@/api/user.js';
+import { mapState } from 'vuex';
 export default {
 	data() {
 		return {
@@ -54,25 +62,28 @@ export default {
 			phone: '',
 			verify: '',
 			//验证的规则
-			rules:{
-				username:{
-					rule:/\S/,
-					msg:"姓名不能为空"
+			rules: {
+				username: {
+					rule: /\S/,
+					msg: '姓名不能为空'
 				},
-				phone:{
-					rule:/^1[3|4|5|6|7|8][0-9]\d{8,8}$/,
-					msg:"手机号码不正确"
+				phone: {
+					rule: /^1[3|4|5|6|7|8][0-9]\d{8,8}$/,
+					msg: '手机号码不正确'
 				},
-				verify:{
-					rule:/^[A-Za-z0-9]{6}$/,
-					msg:"验证码不正确"
-				},
+				verify: {
+					rule: /^[A-Za-z0-9]{6}$/,
+					msg: '验证码不正确'
+				}
 			},
 			resultData: {},
 			isVerify: false,
 			isSend: true,
 			sendText: '发送验证码'
 		};
+	},
+	computed: {
+		...mapState(['userLogo', 'userName', 'userStatus'])
 	},
 	components: { 'move-verify': moveVerify, uniCountdown },
 	methods: {
@@ -94,33 +105,33 @@ export default {
 			this.isSend = true;
 		},
 		sendVerify() {
-			getMobileVerify( {"mobile":this.phone} )
-			.then(response =>{
-				if( response.data.msg == "SUCCESS" ){
-					uni.showToast({ title: '发送成功,请查收', icon: 'none' });
-				}
-			})
-			.catch(() => {
-				uni.showToast({ title: '发送失败,请稍后再试', icon: 'none' });
-			});
+			getMobileVerify({ mobile: this.phone })
+				.then(response => {
+					if (response.data.msg == 'SUCCESS') {
+						uni.showToast({ title: '发送成功,请查收', icon: 'none' });
+					}
+				})
+				.catch(() => {
+					uni.showToast({ title: '发送失败,请稍后再试', icon: 'none' });
+				});
 			this.isSend = false;
 		},
 		//
-		submit(){
-			if(!this.validate('username')) return;
-			if(!this.validate("phone"))  return;
-			if(!this.validate("verify"))  return;
+		submit() {
+			if (!this.validate('username')) return;
+			if (!this.validate('phone')) return;
+			if (!this.validate('verify')) return;
 			uni.showLoading({
-				title:"提交数据中"
+				title: '提交数据中'
 			});
-			
+
 			upUserInfo({
-				"name": this.username,
-				"mobile": this.phone,
-				"userCheckCode": this.verify,
+				name: this.username,
+				mobile: this.phone,
+				userCheckCode: this.verify
 			})
 				.then(res => {
-					if ( res.statusCode === 200){
+					if (res.statusCode === 200) {
 						uni.showToast({
 							title: '提交成功',
 							icon: 'none',
@@ -133,8 +144,7 @@ export default {
 								}, 2000);
 							}
 						});
-					}
-					else{
+					} else {
 						uni.showToast({ title: '提交数据失败，请重试', icon: 'none' });
 					}
 				})
@@ -143,21 +153,21 @@ export default {
 				});
 		},
 		//判断验证是否符合要求
-		validate(key){
-			let bool=true;
-			if(!this.rules[key].rule.test(this[key])){
+		validate(key) {
+			let bool = true;
+			if (!this.rules[key].rule.test(this[key])) {
 				//提示信息
 				uni.showToast({
-					title:this.rules[key].msg,
-					icon: 'none' 
-				})
+					title: this.rules[key].msg,
+					icon: 'none'
+				});
 				//取反
-				bool=false;
+				bool = false;
 				return false;
 			}
 			return bool;
 		}
-	},
+	}
 };
 </script>
 

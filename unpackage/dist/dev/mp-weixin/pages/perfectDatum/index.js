@@ -183,8 +183,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
 var _perfectDatum = __webpack_require__(/*! @/api/perfectDatum.js */ 96);
-var _user = __webpack_require__(/*! @/api/user.js */ 17);var uniCountdown = function uniCountdown() {return __webpack_require__.e(/*! import() | components/uni-countdown/uni-countdown */ "components/uni-countdown/uni-countdown").then(__webpack_require__.bind(null, /*! @/components/uni-countdown/uni-countdown.vue */ 106));};var moveVerify = function moveVerify() {return __webpack_require__.e(/*! import() | components/helang-moveVerify/helang-moveVerify */ "components/helang-moveVerify/helang-moveVerify").then(__webpack_require__.bind(null, /*! @/components/helang-moveVerify/helang-moveVerify.vue */ 143));};var _default =
+var _user = __webpack_require__(/*! @/api/user.js */ 17);
+var _vuex = __webpack_require__(/*! vuex */ 16);function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var uniCountdown = function uniCountdown() {return __webpack_require__.e(/*! import() | components/uni-countdown/uni-countdown */ "components/uni-countdown/uni-countdown").then(__webpack_require__.bind(null, /*! @/components/uni-countdown/uni-countdown.vue */ 106));};var moveVerify = function moveVerify() {return __webpack_require__.e(/*! import() | components/helang-moveVerify/helang-moveVerify */ "components/helang-moveVerify/helang-moveVerify").then(__webpack_require__.bind(null, /*! @/components/helang-moveVerify/helang-moveVerify.vue */ 143));};var _default =
 {
   data: function data() {
     return {
@@ -195,15 +203,15 @@ var _user = __webpack_require__(/*! @/api/user.js */ 17);var uniCountdown = func
       rules: {
         username: {
           rule: /\S/,
-          msg: "姓名不能为空" },
+          msg: '姓名不能为空' },
 
         phone: {
           rule: /^1[3|4|5|6|7|8][0-9]\d{8,8}$/,
-          msg: "手机号码不正确" },
+          msg: '手机号码不正确' },
 
         verify: {
           rule: /^[A-Za-z0-9]{6}$/,
-          msg: "验证码不正确" } },
+          msg: '验证码不正确' } },
 
 
       resultData: {},
@@ -212,6 +220,9 @@ var _user = __webpack_require__(/*! @/api/user.js */ 17);var uniCountdown = func
       sendText: '发送验证码' };
 
   },
+  computed: _objectSpread({},
+  (0, _vuex.mapState)(['userLogo', 'userName', 'userStatus'])),
+
   components: { 'move-verify': moveVerify, uniCountdown: uniCountdown },
   methods: {
     /* 校验结果回调函数 */
@@ -232,9 +243,9 @@ var _user = __webpack_require__(/*! @/api/user.js */ 17);var uniCountdown = func
       this.isSend = true;
     },
     sendVerify: function sendVerify() {
-      (0, _perfectDatum.getMobileVerify)({ "mobile": this.phone }).
+      (0, _perfectDatum.getMobileVerify)({ mobile: this.phone }).
       then(function (response) {
-        if (response.data.msg == "SUCCESS") {
+        if (response.data.msg == 'SUCCESS') {
           uni.showToast({ title: '发送成功,请查收', icon: 'none' });
         }
       }).
@@ -246,16 +257,16 @@ var _user = __webpack_require__(/*! @/api/user.js */ 17);var uniCountdown = func
     //
     submit: function submit() {
       if (!this.validate('username')) return;
-      if (!this.validate("phone")) return;
-      if (!this.validate("verify")) return;
+      if (!this.validate('phone')) return;
+      if (!this.validate('verify')) return;
       uni.showLoading({
-        title: "提交数据中" });
+        title: '提交数据中' });
 
 
       (0, _user.upUserInfo)({
-        "name": this.username,
-        "mobile": this.phone,
-        "userCheckCode": this.verify }).
+        name: this.username,
+        mobile: this.phone,
+        userCheckCode: this.verify }).
 
       then(function (res) {
         if (res.statusCode === 200) {
@@ -271,8 +282,7 @@ var _user = __webpack_require__(/*! @/api/user.js */ 17);var uniCountdown = func
               }, 2000);
             } });
 
-        } else
-        {
+        } else {
           uni.showToast({ title: '提交数据失败，请重试', icon: 'none' });
         }
       }).

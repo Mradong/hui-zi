@@ -103,6 +103,16 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var f0 = _vm._f("formatDate")(_vm.projectData.startTime)
+
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        f0: f0
+      }
+    }
+  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -194,54 +204,98 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var _auth = __webpack_require__(/*! @/utils/auth */ 24);
+var _vuex = __webpack_require__(/*! vuex */ 16);
+var _share = __webpack_require__(/*! @/api/share.js */ 176);var uniPopup = function uniPopup() {return Promise.all(/*! import() | components/uni-popup/uni-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-popup/uni-popup")]).then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 113));};var uniPopupDialog = function uniPopupDialog() {return __webpack_require__.e(/*! import() | components/uni-popup/uni-popup-dialog */ "components/uni-popup/uni-popup-dialog").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup-dialog.vue */ 122));};var _default =
 
-var _auth = __webpack_require__(/*! @/utils/auth */ 24);var uniPopup = function uniPopup() {return Promise.all(/*! import() | components/uni-popup/uni-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-popup/uni-popup")]).then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 113));};var uniPopupDialog = function uniPopupDialog() {return __webpack_require__.e(/*! import() | components/uni-popup/uni-popup-dialog */ "components/uni-popup/uni-popup-dialog").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup-dialog.vue */ 122));};var _default =
 {
   data: function data() {
     return {
-      buttonText: '分享给好友',
-      isShow: true,
-      resultData: {},
-      isVerify: false };
+      showStatus: 0,
+      projectData: {},
+      inviteName: "陈一发儿" };
 
   },
-  onLoad: function onLoad() {
-    if (!(0, _auth.getToken)()) {
-      //=> 获取用户信息,判断该项目是否已经参加
+  onLoad: function onLoad(options) {var _this = this;
+    /* 初始化页面数据 */
+    console.log(options);
+    this.inviteName = options.inviteName;
+    (0, _share.getProjectDetail)({
+      projectId: options.projectId }).
+    then(function (response) {
+      var resData = response.data.data;
+      var initData = {
+        currentNum: resData.currentNum,
+        endTime: resData.endTime,
+        monthCount: resData.monthCount,
+        monthDays: resData.monthDays,
+        name: resData.name,
+        pid: resData.pid,
+        returnValue: resData.returnValue,
+        startTime: resData.startTime,
+        totalNum: resData.totalNum };
+
+      _this.projectData = initData;
+    });
+    /* 判断用户是否登录 */
+    if ((0, _auth.getToken)()) {
+      /* 获取用户与分享项目之间的状态 */
+      (0, _share.getJoinStatus)({
+        projectId: options.projectId }).
+      then(function (response) {
+        var statusCode = response.data.data;
+        switch (statusCode) {
+          case 0:
+            _this.showStatus = 0;
+            break;
+          case 1:
+            _this.showStatus = 1;
+            break;
+          case 2:
+            _this.showStatus = 2;
+            break;
+          case 3:
+            _this.showStatus = 3;
+            break;
+          default:
+            默认代码块;}
+
+      });
     } else {
-      this.buttonText = 'qu登录~';
+      this.showStatus = 4;
+      this.$refs.popup.open();
     }
   },
   onShareAppMessage: function onShareAppMessage(optiom) {
     if (optiom.from === 'button') {
       // 来自页面内转发按钮
       return {
-        title: "会子簿",
-        desc: "专门记录会子的小程序",
-        imageUrl: "../../static/images/cyf.jpg",
-        path: "/pages/home/index?id=" + 123,
+        title: '会子簿',
+        desc: '专门记录会子的小程序',
+        imageUrl: '../../static/images/cyf.jpg',
+        path: '/pages/home/index?userName=' + this.userName + '&inviteId=' + 123,
         success: function success(res) {
           // 转发成功
-          console.log("转发成功:" + JSON.stringify(res));
+          console.log('转发成功:' + JSON.stringify(res));
         },
         fail: function fail(res) {
           // 转发失败
-          console.log("转发失败:" + JSON.stringify(res));
+          console.log('转发失败:' + JSON.stringify(res));
         } };
 
     }
     return {
-      title: "会子簿",
-      desc: "专门记录会子的小程序",
-      imageUrl: "../../static/images/cyf.jpg",
-      path: "/pages/home/index?id=" + 123,
+      title: '会子簿',
+      desc: '专门记录会子的小程序',
+      imageUrl: '../../static/images/cyf.jpg',
+      path: '/pages/home/index?id=' + 123,
       success: function success(res) {
         // 转发成功
-        console.log("转发成功:" + JSON.stringify(res));
+        console.log('转发成功:' + JSON.stringify(res));
       },
       fail: function fail(res) {
         // 转发失败
-        console.log("转发失败:" + JSON.stringify(res));
+        console.log('转发失败:' + JSON.stringify(res));
       } };
 
   },
@@ -250,19 +304,6 @@ var _auth = __webpack_require__(/*! @/utils/auth */ 24);var uniPopup = function 
     uniPopupDialog: uniPopupDialog },
 
   methods: {
-    /* 校验结果回调函数 */
-    verifyResult: function verifyResult(res) {
-      console.log(res);
-      this.isVerify = true;
-      this.resultData = res;
-    },
-    /* 校验插件重置 */
-    verifyReset: function verifyReset() {
-      this.$refs.verifyElement.reset();
-
-      /* 删除当前页面的数据 */
-      this.resultData = {};
-    },
     close: function close(done) {
       done();
     },
@@ -279,9 +320,16 @@ var _auth = __webpack_require__(/*! @/utils/auth */ 24);var uniPopup = function 
       console.log('我加入会子了');
     } },
 
-  watch: {
-    buttonText: function buttonText() {
-      this.isShow = false, this.$refs.popup.open();
+  filters: {
+    formatDate: function formatDate(value) {
+      var date = new Date(value); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
+      var Y = date.getFullYear() + '-';
+      var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+      var D = date.getDate() + ' ';
+      var h = date.getHours() + ':';
+      var m = date.getMinutes() + ':';
+      var s = date.getSeconds();
+      return Y + M + D;
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

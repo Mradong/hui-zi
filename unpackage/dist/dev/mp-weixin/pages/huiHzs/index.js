@@ -136,7 +136,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var WucTab = function WucTab() {return __webpack_require__.e(/*! import() | components/wuc-tab/wuc-tab */ "components/wuc-tab/wuc-tab").then(__webpack_require__.bind(null, /*! @/components/wuc-tab/wuc-tab.vue */ 129));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -152,67 +152,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+var _huizis = __webpack_require__(/*! @/api/huizis.js */ 175);var WucTab = function WucTab() {return __webpack_require__.e(/*! import() | components/wuc-tab/wuc-tab */ "components/wuc-tab/wuc-tab").then(__webpack_require__.bind(null, /*! @/components/wuc-tab/wuc-tab.vue */ 129));};var _default =
 {
   data: function data() {
     return {
       TabCur: 0,
       tabList: [{ name: '我是会员', icon: 'cuIcon-comment' }, { name: '我是会头', icon: 'cuIcon-comment' }],
+      listData: [],
+      userInfo: {},
       isHuiItem: true };
+
   },
   components: { WucTab: WucTab },
   methods: {
@@ -223,11 +172,40 @@ __webpack_require__.r(__webpack_exports__);
       }
       this.isHuiItem = false;
     },
-    toShare: function toShare() {
+    toShare: function toShare(id) {
       uni.navigateTo({
-        url: '/pages/share/index' });
+        url: '/pages/share/index?projectId=' + id + "&inviteName=" + this.userInfo.nickName + "&cid=" + this.userInfo.cid });
 
-    } } };exports.default = _default;
+    } },
+
+  onLoad: function onLoad() {var _this = this;
+    (0, _huizis.getProjects)().then(function (response) {
+      var initData = [];
+      var resData = response.data.data;
+      var len = response.data.data.length;
+      for (var i = 0; i < len; i++) {
+        initData[i] = {
+          pid: resData[i].pid,
+          name: resData[i].name };
+
+      }
+      _this.listData = initData;
+    });
+    (0, _huizis.getUserInfo)().then(function (response) {
+      var resData = response.data.data;
+      var initData = {
+        cid: resData.cid,
+        headUrl: resData.headUrl,
+        mobile: resData.mobile,
+        name: resData.name,
+        nickName: resData.nickName,
+        uid: resData.uid };
+
+      _this.userInfo = initData;
+
+
+    });
+  } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

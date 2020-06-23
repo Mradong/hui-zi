@@ -69,7 +69,6 @@ export default class axios {
 		let Alldata = await this.url_dispose(obj, 2);
 		// console.log(Alldata);
 		return new Promise((resolve, reject) => {
-			console.log(Alldata);
 			this.asiox_beg('', Alldata, (state, data) => {
 				if (state) {
 					// console.log(state && data.data != '',state , data.data == '');
@@ -86,7 +85,6 @@ export default class axios {
 		this.token = getToken();
 		this.front_loading(ALL_data.por_Br)
 		var that = this;
-		console.log( that.token )
 		if (index == 1) {
 			if(type =="POST" ){
 				let {
@@ -121,7 +119,6 @@ export default class axios {
 					header,
 					dataType
 				} = ALL_data;
-				console.log(ALL_data);
 				uni.request({
 					url,
 					data,
@@ -252,7 +249,6 @@ export default class axios {
 				}
 				
 			}
-			console.log(str_data)
 			md5_mi = md5.hax_md5(str_data)
 			newObj['sign'] = md5_mi.toLocaleLowerCase()
 			ra(newObj)

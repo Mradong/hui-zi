@@ -174,7 +174,8 @@ var _vuex = __webpack_require__(/*! vuex */ 16);function _objectSpread(target) {
                     _that.$store.
                     dispatch('codeToToken', {
                       url: '/app/login',
-                      code: code }).
+                      code: code,
+                      userInfo: info.userInfo }).
 
                     then(function () {
                       switch (_that.userStatus) {

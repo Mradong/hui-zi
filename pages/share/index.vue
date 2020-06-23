@@ -11,31 +11,30 @@
 			<view class="share-box-top">
 				<view class="share-box-top-cat"><image src="../../static/images/share_cat.svg" mode=""></image></view>
 				<view class="share-box-top-text">
-					您的好朋友，王二狗
-					<br />
-					邀请您加入~
+					您的好朋友，<text style="color: #DD524D;">{{inviteName}} </text> 邀请您加入~
 				</view>
 			</view>
 			<view class="share-box-detail">
 				<view class="share-box-detail-card">
 					<view class="">
 						<text class="name">项目名称:</text>
-						<text>王二狗500</text>
+						<text>{{ projectData.name }}</text>
 					</view>
 					<view class="">
 						<text class="name">总期数:</text>
-						<text>50</text>
+						<text>{{ projectData.totalNum }}</text>
 					</view>
 					<view class="">
 						<text class="name">固定金额(元):</text>
-						<text>500</text>
+						<text>{{ projectData.returnValue }}</text>
 					</view>
 					<view class="">
 						<text class="name">预计开始时间:</text>
-						<text>2019-10-09</text>
+						<text>{{ projectData.startTime | formatDate }}</text>
 					</view>
-					<button type="default" class="share-button " open-type="share" @click="join" v-if="isShow">{{ buttonText }}</button>
-					<button type="default" class="share-button " @click="toLogin" v-if="!isShow">{{ buttonText }}</button>
+					<button type="default" class="share-button " v-if="showStatus === 0 || showStatus === 3">我要加入</button>
+					<button type="default" class="share-button " open-type="share" v-if="showStatus === 1 || showStatus === 2">分享给好友</button>
+					<button type="default" class="share-button " @click="toLogin" v-if="showStatus === 4">去登录</button>
 				</view>
 			</view>
 
@@ -58,73 +57,105 @@
 import uniPopup from '@/components/uni-popup/uni-popup.vue';
 import uniPopupDialog from '@/components/uni-popup/uni-popup-dialog.vue';
 import { getToken } from '@/utils/auth';
+import { mapState } from 'vuex';
+import { getJoinStatus, getProjectDetail } from '@/api/share.js';
+
 export default {
 	data() {
 		return {
-			buttonText: '分享给好友',
-			isShow: true,
-			resultData: {},
-			isVerify: false
+			showStatus: 0,
+			projectData: {},
+			inviteName:"陈一发儿"
 		};
 	},
-	onLoad() {
-		if (!getToken()) {
-			//=> 获取用户信息,判断该项目是否已经参加
+	onLoad(options) {
+		/* 初始化页面数据 */
+		console.log( options )
+		this.inviteName = options.inviteName ;
+		getProjectDetail({
+			projectId: options.projectId
+		}).then(response => {
+			let resData = response.data.data;
+			let initData = {
+				currentNum: resData.currentNum,
+				endTime: resData.endTime,
+				monthCount: resData.monthCount,
+				monthDays: resData.monthDays,
+				name: resData.name,
+				pid: resData.pid,
+				returnValue: resData.returnValue,
+				startTime: resData.startTime,
+				totalNum: resData.totalNum
+			};
+			this.projectData = initData;
+		});
+		/* 判断用户是否登录 */
+		if (getToken()) {
+			/* 获取用户与分享项目之间的状态 */
+			getJoinStatus({
+				projectId: options.projectId
+			}).then(response => {
+				let statusCode = response.data.data;
+				switch (statusCode) {
+					case 0:
+						this.showStatus = 0;
+						break;
+					case 1:
+						this.showStatus = 1;
+						break;
+					case 2:
+						this.showStatus = 2;
+						break;
+					case 3:
+						this.showStatus = 3;
+						break;
+					default:
+						默认代码块;
+				}
+			});
 		} else {
-			this.buttonText = 'qu登录~';
+			this.showStatus = 4;
+			this.$refs.popup.open();
 		}
 	},
-	onShareAppMessage: function (optiom) {
+	onShareAppMessage: function(optiom) {
 		if (optiom.from === 'button') {
 			// 来自页面内转发按钮
 			return {
-				title: "会子簿",
-				desc: "专门记录会子的小程序",
-				imageUrl: "../../static/images/cyf.jpg",
-				path: "/pages/home/index?id=" + 123,
-				success: function (res) {
+				title: '会子簿',
+				desc: '专门记录会子的小程序',
+				imageUrl: '../../static/images/cyf.jpg',
+				path: '/pages/home/index?userName=' + this.userName + '&inviteId=' + 123,
+				success: function(res) {
 					// 转发成功
-					console.log("转发成功:" + JSON.stringify(res));
+					console.log('转发成功:' + JSON.stringify(res));
 				},
-				fail: function (res) {
+				fail: function(res) {
 					// 转发失败
-					console.log("转发失败:" + JSON.stringify(res));
+					console.log('转发失败:' + JSON.stringify(res));
 				}
-			}
+			};
 		}
 		return {
-			title: "会子簿",
-			desc: "专门记录会子的小程序",
-			imageUrl: "../../static/images/cyf.jpg",
-			path: "/pages/home/index?id=" + 123,
-			success: function (res) {
+			title: '会子簿',
+			desc: '专门记录会子的小程序',
+			imageUrl: '../../static/images/cyf.jpg',
+			path: '/pages/home/index?id=' + 123,
+			success: function(res) {
 				// 转发成功
-				console.log("转发成功:" + JSON.stringify(res));
+				console.log('转发成功:' + JSON.stringify(res));
 			},
-			fail: function (res) {
+			fail: function(res) {
 				// 转发失败
-				console.log("转发失败:" + JSON.stringify(res));
+				console.log('转发失败:' + JSON.stringify(res));
 			}
-		}
+		};
 	},
 	components: {
 		uniPopup,
 		uniPopupDialog
 	},
 	methods: {
-		/* 校验结果回调函数 */
-		verifyResult(res) {
-			console.log(res);
-			this.isVerify = true;
-			this.resultData = res;
-		},
-		/* 校验插件重置 */
-		verifyReset() {
-			this.$refs.verifyElement.reset();
-
-			/* 删除当前页面的数据 */
-			this.resultData = {};
-		},
 		close(done) {
 			done();
 		},
@@ -141,9 +172,16 @@ export default {
 			console.log('我加入会子了');
 		}
 	},
-	watch: {
-		buttonText() {
-			(this.isShow = false), this.$refs.popup.open();
+	filters: {
+		formatDate: function(value) {
+			var date = new Date(value); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
+			var Y = date.getFullYear() + '-';
+			var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+			var D = date.getDate() + ' ';
+			var h = date.getHours() + ':';
+			var m = date.getMinutes() + ':';
+			var s = date.getSeconds();
+			return Y + M + D ;
 		}
 	}
 };
@@ -175,7 +213,6 @@ uni-page-body {
 		z-index: 99;
 		&-top {
 			display: flex;
-			margin-left: 40upx;
 			&-cat {
 				image {
 					width: 180upx;
@@ -210,7 +247,7 @@ uni-page-body {
 					text.name {
 						display: inline-block;
 						font-weight: bold;
-						width: 250upx;
+						
 					}
 					text {
 						font-weight: 500;

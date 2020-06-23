@@ -13,9 +13,9 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({ //全局变量定义
 	state: {
-		userName: "11",
-		userLogo: "",
-		userStatus: 0,//0 资料为空 1.资料不完整  2 资料不完整、(手机、真实姓名) 3. 资料完全 
+		userName: "游客",
+		userLogo: "../../static/images/cyf.jpg",
+		userStatus: 0, //0 资料为空 1.资料不完整  2 资料不完整、(手机、真实姓名) 3. 资料完全 
 		userId: '',
 		token: '',
 	},
@@ -41,16 +41,20 @@ const store = new Vuex.Store({ //全局变量定义
 		// get user token
 		codeToToken({
 			commit
-		}, data ) {
+		}, data) {
 			return new Promise(resolve => {
-				codeToToken(data.url,data.code).then(response => {
-					console.log(response.data )
-					let token = response.data.data.token;
-					let userStatus = response.data.data.userStatus;
+				codeToToken(data.url, data.code).then(response => {
+					console.log( response.data)
+					const {
+						token,
+						userStatus
+					} = response.data.data
+
 					commit('SET_TOKEN', token)
+					commit('SET_USERNAME', data.userInfo.nickName)
+					commit('SET_USERLOGO', data.userInfo.avatarUrl)
 					commit('SET_USERSTATUS', userStatus)
 					setToken(token)
-					console.log( getToken())
 					resolve()
 				}).catch(error => {
 					reject(error)

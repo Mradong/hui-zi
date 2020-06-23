@@ -27,7 +27,6 @@ uni-page-body {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
-  margin-left: 40rpx;
 }
 .share-box-top-cat image {
   width: 180rpx;
@@ -67,7 +66,6 @@ uni-page-body {
 .share-box-detail-card > view text.name {
   display: inline-block;
   font-weight: bold;
-  width: 250rpx;
 }
 .share-box-detail-card > view text {
   font-weight: 500;
