@@ -1551,7 +1551,7 @@ uni$1;exports.default = _default;
 
 /***/ }),
 
-/***/ 118:
+/***/ 120:
 /*!*******************************************************************!*\
   !*** C:/Users/mi/Desktop/git-huizi/components/uni-popup/popup.js ***!
   \*******************************************************************/
@@ -1559,7 +1559,7 @@ uni$1;exports.default = _default;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _message = _interopRequireDefault(__webpack_require__(/*! ./message.js */ 119));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _message = _interopRequireDefault(__webpack_require__(/*! ./message.js */ 121));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 // 定义 type 类型:弹出类型：top/bottom/center
 var config = {
   // 顶部弹出
@@ -1586,7 +1586,7 @@ var config = {
 
 /***/ }),
 
-/***/ 119:
+/***/ 121:
 /*!*********************************************************************!*\
   !*** C:/Users/mi/Desktop/git-huizi/components/uni-popup/message.js ***!
   \*********************************************************************/
@@ -2807,66 +2807,6 @@ function upUserInfo(data) {
 
 /***/ }),
 
-/***/ 175:
-/*!***************************************************!*\
-  !*** C:/Users/mi/Desktop/git-huizi/api/huizis.js ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getProjects = getProjects;exports.getUserInfo = getUserInfo;var _request = _interopRequireDefault(__webpack_require__(/*! @/utils/request.js */ 18));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-
-
-function getProjects() {
-  var url = "/orange/projects";
-  return _request.default.post({
-    url: url });
-
-}
-
-function getUserInfo() {
-  var url = "/orange/getUserInfo";
-  return _request.default.post({
-    url: url });
-
-}
-
-/***/ }),
-
-/***/ 176:
-/*!**************************************************!*\
-  !*** C:/Users/mi/Desktop/git-huizi/api/share.js ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getJoinStatus = getJoinStatus;exports.getProjectDetail = getProjectDetail;var _request = _interopRequireDefault(__webpack_require__(/*! @/utils/request.js */ 18));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-
-
-function getJoinStatus(data) {
-  var url = "/orange/user/project";
-  var initData = data;
-  return _request.default.post({
-    url: url,
-    data: initData });
-
-
-}
-
-function getProjectDetail(data) {
-  var url = "/orange/project";
-  var initData = data;
-  return _request.default.post({
-    url: url,
-    data: initData });
-
-
-}
-
-/***/ }),
-
 /***/ 18:
 /*!******************************************************!*\
   !*** C:/Users/mi/Desktop/git-huizi/utils/request.js ***!
@@ -2881,7 +2821,7 @@ var _auth = __webpack_require__(/*! @/utils/auth */ 24);function _interopRequire
 
 var $http = new _xmlPackaging.default({
   // 默认 跟地址
-  baseUrl: 'http://192.168.2.157:9002',
+  baseUrl: 'http://121.89.196.41:9002',
   // 请求头  默认空
   header: '',
   //  是否开启 请求拦截
@@ -10323,6 +10263,33 @@ function getUserTAC() {
 
 /***/ }),
 
+/***/ 40:
+/*!***************************************************!*\
+  !*** C:/Users/mi/Desktop/git-huizi/api/huizis.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getProjects = getProjects;exports.getUserInfo = getUserInfo;var _request = _interopRequireDefault(__webpack_require__(/*! @/utils/request.js */ 18));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+
+function getProjects() {
+  var url = "/orange/projects";
+  return _request.default.post({
+    url: url });
+
+}
+
+function getUserInfo() {
+  var url = "/orange/getUserInfo";
+  return _request.default.post({
+    url: url });
+
+}
+
+/***/ }),
+
 /***/ 5:
 /*!*******************************************************!*\
   !*** ./node_modules/@dcloudio/uni-stat/dist/index.js ***!
@@ -11245,7 +11212,40 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 
-/***/ 96:
+/***/ 81:
+/*!**************************************************!*\
+  !*** C:/Users/mi/Desktop/git-huizi/api/share.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getJoinStatus = getJoinStatus;exports.getProjectDetail = getProjectDetail;var _request = _interopRequireDefault(__webpack_require__(/*! @/utils/request.js */ 18));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+
+function getJoinStatus(data) {
+  var url = "/orange/user/project";
+  var initData = data;
+  return _request.default.post({
+    url: url,
+    data: initData });
+
+
+}
+
+function getProjectDetail(data) {
+  var url = "/orange/project";
+  var initData = data;
+  return _request.default.post({
+    url: url,
+    data: initData });
+
+
+}
+
+/***/ }),
+
+/***/ 98:
 /*!*********************************************************!*\
   !*** C:/Users/mi/Desktop/git-huizi/api/perfectDatum.js ***!
   \*********************************************************/

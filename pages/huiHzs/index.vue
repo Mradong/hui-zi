@@ -64,8 +64,6 @@ export default {
 				uid: resData.uid,
 			}
 			this.userInfo = initData ;
-			
-			
 		});
 	}
 };
