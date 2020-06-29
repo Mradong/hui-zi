@@ -19,6 +19,5 @@
   },
   "usingComponents": {
     "nav-bar": "/components/zhouWei-navBar/index"
-  },
-  "sitemapLocation": "sitemap32.json"
+  }
 }

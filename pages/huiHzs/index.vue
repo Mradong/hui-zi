@@ -1,6 +1,8 @@
 <template>
 	<view class="hui-zis">
-		<view class="hui-zis-top"><nav-bar fontColor="#000" backState="3000" :home="false" :titleCenter="true" type="fixed" title="分享入口"></nav-bar></view>
+		<view class="hui-zis-top">
+			<nav-bar fontColor="#000" backState="1000" :home="false" :titleCenter="true" type="fixed" title="分享入口"></nav-bar>
+		</view>
 		<wuc-tab class="hui-zis-tab" :tab-list="tabList" :tabCur.sync="TabCur" @change="tabChange" :textFlex="true"></wuc-tab>
 		<view class="hui-zis-items" v-if="isHuiItem">
 			<view class="hui-zis-items-item" v-for="item in listData" :key="item.pid">
@@ -126,7 +128,7 @@ export default {
 			.name {
 				flex: 1;
 				border-right: 1px solid #bbb19e;
-				font-size: 28upx;
+				font-size: 32upx;
 				line-height: 90upx;
 			}
 			.go {

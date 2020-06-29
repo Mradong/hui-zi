@@ -75,6 +75,6 @@ uni-page-body {
   position: relative;
   top: 120%;
   color: #8e7d01;
-  background-color: #ffffff;
+  margin: 10rpx 0;
 }
 

@@ -1552,9 +1552,9 @@ uni$1;exports.default = _default;
 /***/ }),
 
 /***/ 120:
-/*!*******************************************************************!*\
-  !*** C:/Users/mi/Desktop/git-huizi/components/uni-popup/popup.js ***!
-  \*******************************************************************/
+/*!***************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/hui-zi/components/uni-popup/popup.js ***!
+  \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1587,9 +1587,9 @@ var config = {
 /***/ }),
 
 /***/ 121:
-/*!*********************************************************************!*\
-  !*** C:/Users/mi/Desktop/git-huizi/components/uni-popup/message.js ***!
-  \*********************************************************************/
+/*!*****************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/hui-zi/components/uni-popup/message.js ***!
+  \*****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1739,9 +1739,9 @@ function normalizeComponent (
 /***/ }),
 
 /***/ 15:
-/*!****************************************************!*\
-  !*** C:/Users/mi/Desktop/git-huizi/store/index.js ***!
-  \****************************************************/
+/*!************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/hui-zi/store/index.js ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2767,9 +2767,9 @@ var index_esm = {
 /***/ }),
 
 /***/ 17:
-/*!*************************************************!*\
-  !*** C:/Users/mi/Desktop/git-huizi/api/user.js ***!
-  \*************************************************/
+/*!*********************************************************!*\
+  !*** C:/Users/Administrator/Desktop/hui-zi/api/user.js ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2798,19 +2798,12 @@ function upUserInfo(data) {
 
 }
 
-// export function logout() {
-//   // return request({
-//   //   url: '/vue-admin-template/user/logout',
-//   //   method: 'post'
-//   // })
-// }
-
 /***/ }),
 
 /***/ 18:
-/*!******************************************************!*\
-  !*** C:/Users/mi/Desktop/git-huizi/utils/request.js ***!
-  \******************************************************/
+/*!**************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/hui-zi/utils/request.js ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2837,9 +2830,9 @@ $http;exports.default = _default;
 /***/ }),
 
 /***/ 19:
-/*!*******************************************************************************!*\
-  !*** C:/Users/mi/Desktop/git-huizi/components/xml-packaging/xml-packaging.js ***!
-  \*******************************************************************************/
+/*!***************************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/hui-zi/components/xml-packaging/xml-packaging.js ***!
+  \***************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9954,9 +9947,9 @@ if (hadRuntime) {
 /***/ }),
 
 /***/ 23:
-/*!*************************************************************************!*\
-  !*** C:/Users/mi/Desktop/git-huizi/components/xml-packaging/md5/MD5.js ***!
-  \*************************************************************************/
+/*!*********************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/hui-zi/components/xml-packaging/md5/MD5.js ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10156,9 +10149,9 @@ function Utf8Encode(string) {
 /***/ }),
 
 /***/ 24:
-/*!***************************************************!*\
-  !*** C:/Users/mi/Desktop/git-huizi/utils/auth.js ***!
-  \***************************************************/
+/*!***********************************************************!*\
+  !*** C:/Users/Administrator/Desktop/hui-zi/utils/auth.js ***!
+  \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10222,9 +10215,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 31:
-/*!*************************************************!*\
-  !*** C:/Users/mi/Desktop/git-huizi/api/home.js ***!
-  \*************************************************/
+/*!*********************************************************!*\
+  !*** C:/Users/Administrator/Desktop/hui-zi/api/home.js ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10252,9 +10245,9 @@ function getUserTAC() {
 /***/ }),
 
 /***/ 4:
-/*!************************************************!*\
-  !*** C:/Users/mi/Desktop/git-huizi/pages.json ***!
-  \************************************************/
+/*!********************************************************!*\
+  !*** C:/Users/Administrator/Desktop/hui-zi/pages.json ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10264,9 +10257,9 @@ function getUserTAC() {
 /***/ }),
 
 /***/ 40:
-/*!***************************************************!*\
-  !*** C:/Users/mi/Desktop/git-huizi/api/huizis.js ***!
-  \***************************************************/
+/*!***********************************************************!*\
+  !*** C:/Users/Administrator/Desktop/hui-zi/api/huizis.js ***!
+  \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11189,9 +11182,9 @@ module.exports = {"_from":"@dcloudio/uni-stat@alpha","_id":"@dcloudio/uni-stat@2
 /***/ }),
 
 /***/ 7:
-/*!*****************************************************************!*\
-  !*** C:/Users/mi/Desktop/git-huizi/pages.json?{"type":"style"} ***!
-  \*****************************************************************/
+/*!*************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/hui-zi/pages.json?{"type":"style"} ***!
+  \*************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11201,9 +11194,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ }),
 
 /***/ 8:
-/*!****************************************************************!*\
-  !*** C:/Users/mi/Desktop/git-huizi/pages.json?{"type":"stat"} ***!
-  \****************************************************************/
+/*!************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/hui-zi/pages.json?{"type":"stat"} ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11213,14 +11206,14 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ }),
 
 /***/ 81:
-/*!**************************************************!*\
-  !*** C:/Users/mi/Desktop/git-huizi/api/share.js ***!
-  \**************************************************/
+/*!**********************************************************!*\
+  !*** C:/Users/Administrator/Desktop/hui-zi/api/share.js ***!
+  \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getJoinStatus = getJoinStatus;exports.getProjectDetail = getProjectDetail;var _request = _interopRequireDefault(__webpack_require__(/*! @/utils/request.js */ 18));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.getJoinStatus = getJoinStatus;exports.getProjectDetail = getProjectDetail;exports.joinProject = joinProject;var _request = _interopRequireDefault(__webpack_require__(/*! @/utils/request.js */ 18));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 
 function getJoinStatus(data) {
@@ -11243,12 +11236,22 @@ function getProjectDetail(data) {
 
 }
 
+function joinProject(data) {
+  var url = "/orange/applyProject";
+  var initData = data;
+  return _request.default.post({
+    url: url,
+    data: initData });
+
+
+}
+
 /***/ }),
 
 /***/ 98:
-/*!*********************************************************!*\
-  !*** C:/Users/mi/Desktop/git-huizi/api/perfectDatum.js ***!
-  \*********************************************************/
+/*!*****************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/hui-zi/api/perfectDatum.js ***!
+  \*****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

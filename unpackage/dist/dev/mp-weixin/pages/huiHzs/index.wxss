@@ -62,7 +62,7 @@
   -webkit-flex: 1;
           flex: 1;
   border-right: 1px solid #bbb19e;
-  font-size: 28rpx;
+  font-size: 32rpx;
   line-height: 90rpx;
 }
 .hui-zis-items-item .go {

@@ -20,3 +20,13 @@ export function getProjectDetail(data) {
 	});
 
 }
+
+export function joinProject(data) {
+	let url = "/orange/applyProject"
+	let initData = data ;
+	return $http.post({
+		url,
+		data: initData
+	});
+
+}
